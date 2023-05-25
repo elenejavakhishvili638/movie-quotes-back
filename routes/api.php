@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Register\RegistrationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::group(['controller' => RegistrationController::class], function () {
-    Route::post('/register', 'store')->middleware('guest')->name('register.store');
-});
+Route::post('/register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');

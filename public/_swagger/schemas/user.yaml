@@ -1,0 +1,20 @@
+components:
+  schemas:
+    User:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            username:
+              type: string
+              example: elene
+            email:
+              type: string
+              example: elene@redberry.com
+            password:
+              type: string
+              example: 123elene
+            password_confirmation:
+              type: string
+              example: 123elene
+        - $ref: "../common.yaml#/components/schemas/TimeStamps"
