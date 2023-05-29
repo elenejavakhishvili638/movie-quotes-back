@@ -1,0 +1,21 @@
+paths:
+  /register:
+    post:
+      tags:
+        - User
+      summary: Registers a new user
+      description: Registers a new user and returns the created user data.
+      requestBody:
+        description: User data needed for registration
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/user.yaml#/components/schemas/User"
+      responses:
+        "201":
+          $ref: "../responses/user.yaml#/components/responses/users/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
