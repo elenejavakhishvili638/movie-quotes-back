@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Register\RegistrationController;
+use App\Http\Controllers\Session\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.store');
