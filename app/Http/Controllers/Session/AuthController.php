@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Session;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -20,14 +22,16 @@ class AuthController extends Controller
 
         $user = User::where('email', $attributes['username'])->orWhere('username', $attributes['username'])->first();
 
-        if (!$user || !Hash::check($attributes['password'], $user->password)) {
-            return response([
-                'message' => 'The provided credentials are incorrect.',
-            ], 401);
+        if ($user && Hash::check($attributes['password'], $user->password)) {
+            Auth::login($user);
+
+            session()->regenerate();
+
+            return response()->json(auth()->user());
         }
 
-        $token = $user->createToken($attributes['token_name']);
-
-        return ['token' => $token->plainTextToken];
+        return response()->json([
+            'message' => 'Invalid credentials',
+        ], 401);
     }
 }
