@@ -20,10 +20,10 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'min:3',, function ($attribute, $value, $fail) {
+            'username' => ['required', 'min:3', function ($attribute, $value, $fail) {
                 $user = User::where('email', $value)->orWhere('username', $value)->first();
                 if (!$user) {
-                    return $fail(__('validation.custom.invalid_username', ['attribute' => __('validation.attributes.username')]));
+                    return $fail('The provided credentials are incorrect.');
                 }
             }],
             'password' => ['required']

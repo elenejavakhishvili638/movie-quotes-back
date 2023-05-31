@@ -9,6 +9,7 @@ use App\Notifications\VerifyEmail;
 use App\Notifications\VerifyEmailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class RegistrationController extends Controller
 {
@@ -23,6 +24,8 @@ class RegistrationController extends Controller
         $user = User::create($attributes);
 
         auth()->login($user);
+
+        $user->notify(new VerifyEmailNotification());
 
         return response()->json($user, 201);
     }
