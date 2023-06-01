@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\Register\RegistrationController;
 use App\Http\Controllers\Session\AuthController;
 use App\Http\Controllers\VerificationController;
@@ -25,3 +26,6 @@ Route::post('/register', [RegistrationController::class, 'store'])->middleware('
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.store');
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
+
+Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect']);
+Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callback']);
