@@ -24,6 +24,7 @@ class AuthController extends Controller
 
         if ($user && Hash::check($attributes['password'], $user->password)) {
             Auth::login($user);
+            // auth()->attempt($user);
 
             session()->regenerate();
 
