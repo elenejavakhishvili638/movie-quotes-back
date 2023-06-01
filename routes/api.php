@@ -25,6 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.store');
 
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('login.destroy');
+
+
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
 
 Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect']);

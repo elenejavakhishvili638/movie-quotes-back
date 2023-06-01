@@ -22,8 +22,10 @@ class AuthController extends Controller
 
         $user = User::where('email', $attributes['username'])->orWhere('username', $attributes['username'])->first();
 
+        $remember = request()->has('remember');
+
         if ($user && Hash::check($attributes['password'], $user->password)) {
-            Auth::login($user);
+            Auth::login($user, $remember);
 
             session()->regenerate();
 
@@ -33,5 +35,17 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Invalid credentials',
         ], 401);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json([
+            'message' => 'Logged out',
+        ]);
     }
 }
