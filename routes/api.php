@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GoogleRegistrationController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\Register\RegistrationController;
 use App\Http\Controllers\Session\AuthController;
 use App\Http\Controllers\VerificationController;
@@ -32,3 +33,5 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
 
 Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callback']);
+
+Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])->middleware('guest')->name('password.email');
