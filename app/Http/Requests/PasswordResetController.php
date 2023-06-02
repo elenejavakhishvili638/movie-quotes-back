@@ -8,25 +8,33 @@ use App\Models\User;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Http\RedirectResponse;
+
 
 class PasswordResetController extends Controller
 {
-    public function storeEmail(ResetPasswordEmailRequest $request)
+
+    public function storeEmail(ResetPasswordEmailRequest $request): RedirectResponse
     {
         $attributes = $request->validated();
 
         $user = User::where('email', $attributes['email'])->first();
 
         $token = app('auth.password.broker')->createToken($user);
-        $frontEndUrl = env('FRONTEND_URL', 'http://localhost:8081');
-        $url = url($frontEndUrl . '/reset-password/' . $token . '?email=' . $attributes['email'] . '&email=true');
-
+        $url = url('/reset-password/' . $token . '?email=' . $attributes['email']);
         $user->notify(new ResetPasswordNotification($url));
 
-        return response()->json(201);
+        return redirect()->route('verifyEmail.confirmation');
+    }
+
+    public function showReset(Request $request, string $token): View
+    {
+        $email = $request->query('email');
+        return view('resetPassword.reset', ['token' => $token, 'email' => $email]);
     }
 
     public function update(ResetPasswordRequest $request): mixed
@@ -46,6 +54,6 @@ class PasswordResetController extends Controller
         );
 
 
-        return response()->json(201);
+        return view('resetPassword.update');
     }
 }

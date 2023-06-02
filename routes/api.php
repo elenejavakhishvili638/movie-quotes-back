@@ -35,3 +35,4 @@ Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callback']);
 
 Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])->middleware('guest')->name('password.email');
+Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
