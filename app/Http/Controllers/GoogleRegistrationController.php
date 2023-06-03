@@ -26,7 +26,8 @@ class GoogleRegistrationController extends Controller
             'email' => $googleUser->email,
         ]);
 
-        Auth::login($user);
-        return redirect('http://localhost:8081');
+        Auth::login($user, true);
+        session()->regenerate();
+        return redirect('http://localhost:8081/news-feed');
     }
 }
