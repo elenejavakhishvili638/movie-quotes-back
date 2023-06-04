@@ -7,14 +7,14 @@ use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
 class PasswordResetController extends Controller
 {
-    public function storeEmail(ResetPasswordEmailRequest $request)
+    public function storeEmail(ResetPasswordEmailRequest $request): JsonResponse
     {
         $attributes = $request->validated();
 
@@ -29,7 +29,7 @@ class PasswordResetController extends Controller
         return response()->json(201);
     }
 
-    public function update(ResetPasswordRequest $request): mixed
+    public function update(ResetPasswordRequest $request): JsonResponse
     {
         $attributes = $request->validated();
         $status = Password::broker()->reset(
