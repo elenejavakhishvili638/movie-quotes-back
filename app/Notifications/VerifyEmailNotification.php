@@ -53,8 +53,7 @@ class VerifyEmailNotification extends VerifyEmail
 
         $frontendUrl = $frontEndDomain . $path . '?' . $signedUrlParts['query'];
 
-        Log::info($frontendUrl);
-        Log::info($temporarySignedRoute);
+        $frontendUrl .= '&email_verified=true';
 
         return $frontendUrl;
     }

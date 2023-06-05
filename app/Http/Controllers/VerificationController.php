@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
-use Log;
+use Illuminate\Http\JsonResponse;
 
 class VerificationController extends Controller
 {
-    public function verify(EmailVerificationRequest $request)
+    public function verify(EmailVerificationRequest $request): JsonResponse
     {
         $request->fulfill();
 
-        auth()->logout();
+        // auth()->logout();
 
         return response()->json(201);
     }
