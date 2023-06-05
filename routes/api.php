@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GoogleRegistrationController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\Register\RegistrationController;
 use App\Http\Controllers\Session\AuthController;
@@ -36,3 +37,5 @@ Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callb
 
 Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])->middleware('guest')->name('password.email');
 Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
+
+Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');

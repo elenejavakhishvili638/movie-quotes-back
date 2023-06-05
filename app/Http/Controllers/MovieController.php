@@ -12,7 +12,13 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->check()) {
+            $movies = auth()->user()->movies;
+        } else {
+            $movies = [];
+        }
+
+        return response()->json($movies);
     }
 
     /**
