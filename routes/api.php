@@ -3,6 +3,7 @@
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\Register\RegistrationController;
 use App\Http\Controllers\Session\AuthController;
 use App\Http\Controllers\VerificationController;
@@ -39,3 +40,4 @@ Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])-
 Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
+Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');

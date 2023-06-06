@@ -1,0 +1,50 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#7208
+    [34mall[39m: [
+      [34;4mApp\Models\Movie[39;24m {#7249
+        [34muser_id[39m: [35m18[39m,
+        [34mtitle[39m: "[32m{"en":"Quisquam et quod ut eum voluptas corporis.","ka":"\u10d5\u10d0\u10ea\u10d8\u10d5\u10d8\u10d7\u10d0."}[39m",
+        [34myear[39m: [35m1914[39m,
+        [34mgenre[39m: "[32mquod[39m",
+        [34mdirector[39m: "[32m{"en":"\u10e0\u10dd\u10d6\u10d0 \u10d0\u10d1\u10d0\u10e8\u10d8\u10eb\u10d4","ka":"\u10e1\u10d0\u10d3\u10d8\u10da\u10d6\u10d4\u10d3."}[39m",
+        [34mdescription[39m: "[32m{"en":"Ratione blanditiis sed molestias.","ka":"Fugiat consequatur omnis libero eos harum molestiae ut odit ratione nemo dolorem magnam."}[39m",
+        [34mimage[39m: "[32mhttps://via.placeholder.com/640x480.png/00ccdd?text=libero[39m",
+      },
+      [34;4mApp\Models\Movie[39;24m {#7299
+        [34muser_id[39m: [35m19[39m,
+        [34mtitle[39m: "[32m{"en":"Laudantium ut est unde distinctio sint esse.","ka":"\u10ee\u10d0\u10e0. \u10e8\u10d4\u10dc."}[39m",
+        [34myear[39m: [35m2023[39m,
+        [34mgenre[39m: "[32meaque[39m",
+        [34mdirector[39m: "[32m{"en":"\u10d8\u10e3\u10e0\u10d8 \u10d2\u10d0\u10e1\u10d0\u10dc\u10dd\u10d5\u10d0","ka":"\u10e1\u10ee\u10d5\u10d0\u10e4\u10e0\u10d8\u10d5."}[39m",
+        [34mdescription[39m: "[32m{"en":"Omnis omnis et et eum magni.","ka":"Voluptas reiciendis mollitia fugiat asperiores recusandae ipsa."}[39m",
+        [34mimage[39m: "[32mhttps://via.placeholder.com/640x480.png/0077cc?text=sed[39m",
+      },
+      [34;4mApp\Models\Movie[39;24m {#7324
+        [34muser_id[39m: [35m20[39m,
+        [34mtitle[39m: "[32m{"en":"Et cupiditate quia impedit.","ka":"\u10e0\u10dd\u10db\u10d4\u10da\u10d8\u10ea\u10d0."}[39m",
+        [34myear[39m: [35m1998[39m,
+        [34mgenre[39m: "[32mea[39m",
+        [34mdirector[39m: "[32m{"en":"\u10d0\u10e0\u10e9\u10d8\u10da\u10d8 \u10da\u10dd\u10e0\u10d7\u10e5\u10d8\u10e4\u10d0\u10dc\u10d8\u10eb\u10d4","ka":"\u10ef\u10d4\u10e0 \u10d4\u10e0\u10d7\u10d8."}[39m",
+        [34mdescription[39m: "[32m{"en":"Eligendi provident est iste eaque minus voluptatum cum.","ka":"Et officia assumenda laudantium doloribus dolore perspiciatis."}[39m",
+        [34mimage[39m: "[32mhttps://via.placeholder.com/640x480.png/00ee55?text=similique[39m",
+      },
+      [34;4mApp\Models\Movie[39;24m {#7349
+        [34muser_id[39m: [35m21[39m,
+        [34mtitle[39m: "[32m{"en":"Omnis iste et sunt fugiat voluptas sequi.","ka":"\u10e0\u10dd\u10db \u10ee\u10d4\u10da\u10d8."}[39m",
+        [34myear[39m: [35m2012[39m,
+        [34mgenre[39m: "[32mharum[39m",
+        [34mdirector[39m: "[32m{"en":"\u10dc\u10d8\u10d9\u10d0 \u10e7\u10e3\u10e0\u10d0\u10e8\u10d5\u10d8\u10da\u10d8","ka":"\u10de\u10d8\u10e0\u10ef\u10d5\u10d0\u10e0\u10d8."}[39m",
+        [34mdescription[39m: "[32m{"en":"Omnis corrupti voluptatem doloribus ex commodi.","ka":"Quo in quo ut asperiores assumenda veniam explicabo."}[39m",
+        [34mimage[39m: "[32mhttps://via.placeholder.com/640x480.png/0055ee?text=est[39m",
+      },
+      [34;4mApp\Models\Movie[39;24m {#7374
+        [34muser_id[39m: [35m22[39m,
+        [34mtitle[39m: "[32m{"en":"Accusantium odio et odit quia ea.","ka":"\u10d1\u10d4\u10d3\u10dc\u10d8\u10d4\u10e0\u10dd."}[39m",
+        [34myear[39m: [35m1903[39m,
+        [34mgenre[39m: "[32mincidunt[39m",
+        [34mdirector[39m: "[32m{"en":"\u10d0\u10d9\u10d0\u10d9\u10d8 \u10d9\u10dd\u10de\u10d0\u10da\u10d8\u10d0\u10dc\u10d8","ka":"\u10d8\u10ea\u10d8, \u10e0\u10dd\u10db."}[39m",
+        [34mdescription[39m: "[32m{"en":"In voluptate doloremque facere fugiat.","ka":"Itaque quis assumenda non ut sed odit modi sapiente ea iure ipsum."}[39m",
+        [34mimage[39m: "[32mhttps://via.placeholder.com/640x480.png/003366?text=tempore[39m",
+      },
+    ],
+  }
+
