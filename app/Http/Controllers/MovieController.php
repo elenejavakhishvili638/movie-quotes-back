@@ -10,12 +10,12 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $movies = [];
         if (auth()->check()) {
-            $movies = auth()->user()->movies;
-        } else {
-            $movies = [];
+            $searchTerm = $request->query('search');
+            $movies = auth()->user()->movies()->latest()->filter($searchTerm)->get();
         }
 
         return response()->json($movies);
