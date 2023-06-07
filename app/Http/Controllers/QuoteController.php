@@ -10,9 +10,15 @@ class QuoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $searchTerm = $request->query('search');
+        $quotes = Quote::with('movie.user')
+            ->filter($searchTerm)
+            ->latest()
+            ->get();
+
+        return response()->json($quotes);
     }
 
     /**
