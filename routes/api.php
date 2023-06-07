@@ -40,4 +40,6 @@ Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])-
 Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
+Route::get('/movie/{id}', [MovieController::class, 'show']);
+
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');

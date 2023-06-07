@@ -40,10 +40,13 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Movie $movie)
+
+    public function show($id)
     {
-        //
+        $movie = Movie::with('quotes')->find($id);
+        return response()->json($movie);
     }
+
 
     /**
      * Show the form for editing the specified resource.
