@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class QuoteFactory extends Factory
         $faker = \Faker\Factory::create('ka_GE');
         return [
             'movie_id' => Movie::factory(),
+            'user_id' => User::factory(),
             'body' => [
                 'en' => $faker->sentence(),
                 'ka' => $faker->realText(10),
