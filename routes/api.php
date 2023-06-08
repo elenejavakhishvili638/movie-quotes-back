@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\GoogleRegistrationController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\Register\RegistrationController;
 use App\Http\Controllers\Session\AuthController;
 use App\Http\Controllers\VerificationController;
@@ -31,8 +33,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
 
-Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect']);
-Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callback']);
+Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect'])->middleware('web');
+Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callback'])->middleware('web');
 
 Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])->middleware('guest')->name('password.email');
 Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
+
+Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
+Route::get('/movie/{id}', [MovieController::class, 'show']);
+
+Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
