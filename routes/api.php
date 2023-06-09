@@ -43,6 +43,8 @@ Route::post('/reset-password', [PasswordResetController::class, 'update'])->midd
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
 Route::get('/movie/{id}', [MovieController::class, 'show']);
 Route::post('/movie', [MovieController::class, 'store'])->name('movie.store');
+Route::delete('/movie/{id}', [MovieController::class, 'destroy'])->name('movie.destroy');
+
 
 Route::get('/genres', function () {
     $genres = Genre::all();
