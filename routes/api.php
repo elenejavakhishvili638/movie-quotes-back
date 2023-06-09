@@ -7,6 +7,7 @@ use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\Register\RegistrationController;
 use App\Http\Controllers\Session\AuthController;
 use App\Http\Controllers\VerificationController;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +42,11 @@ Route::post('/reset-password', [PasswordResetController::class, 'update'])->midd
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
 Route::get('/movie/{id}', [MovieController::class, 'show']);
+Route::post('/movie', [MovieController::class, 'store'])->name('movie.store');
+
+Route::get('/genres', function () {
+    $genres = Genre::all();
+    return response()->json($genres);
+});
 
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
