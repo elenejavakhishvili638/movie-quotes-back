@@ -44,6 +44,7 @@ Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
 Route::get('/movie/{id}', [MovieController::class, 'show']);
 Route::post('/movie', [MovieController::class, 'store'])->name('movie.store');
 Route::delete('/movie/{id}', [MovieController::class, 'destroy'])->name('movie.destroy');
+Route::patch('/movie/{id}', [MovieController::class, 'update'])->name('movie.update');
 
 
 Route::get('/genres', function () {

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMovieRequest;
+use App\Http\Requests\UpdateMovieRequest;
 use App\Models\Movie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MovieController extends Controller
 {
@@ -86,15 +88,42 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Movie $movie)
+    public function update(UpdateMovieRequest $request, $id)
     {
-        //
+        $attributes = $request->validated();
+
+        $movie = Movie::find($id);
+
+
+        if ($request->hasFile('image')) {
+            $attributes['image'] = request()->file('image')->store('images');
+        }
+
+        $movie->setTranslations('title', [
+            'en' => $attributes['title']['en'],
+            'ka' => $attributes['title']['ka']
+        ])->setTranslations('description', [
+            'en' => $attributes['description']['en'],
+            'ka' => $attributes['description']['ka']
+        ])->setTranslations('director', [
+            'en' => $attributes['director']['en'],
+            'ka' => $attributes['director']['ka']
+        ])
+            ->setAttribute('year', $attributes['year'])
+            ->setAttribute('image', $attributes['image'])
+            ->setAttribute('user_id', $attributes['user_id']);
+
+        $movie->save();
+
+        $movie->genres()->sync($request->genres);
+
+        return response()->json($movie, 201);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $movie = Movie::find($id);
 
