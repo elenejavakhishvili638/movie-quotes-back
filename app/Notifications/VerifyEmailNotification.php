@@ -66,7 +66,7 @@ class VerifyEmailNotification extends VerifyEmail
         // Log::info($verificationUrl);
         return (new MailMessage)
             ->subject('Verify your email address')
-            ->markdown('emails.verify-email', ['url' => $verificationUrl]);
+            ->markdown('emails.verify-email', ['url' => $verificationUrl, 'user' => auth()->user()]);
     }
 
     /**

@@ -36,7 +36,7 @@
             <p style="color:#DDCCAA;margin-top:10px;font-size:12px;font-weight:500;margin:0 auto;">MOVIE QUOTES</p>
         </div>
         <div style="margin-top:73px;align-text:left;">
-            <p style="margin-bottom:24px">Hola ekaterine!</p>
+            <p style="margin-bottom:24px">Hola!</p>
             <p>Thanks for joining Movie quotes! We really appreciate it. Please click the button below to verify your
                 account:</p>
             <a href="{{ $url }}" target="_blank"
