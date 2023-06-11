@@ -110,8 +110,11 @@ class MovieController extends Controller
             'ka' => $attributes['director']['ka']
         ])
             ->setAttribute('year', $attributes['year'])
-            ->setAttribute('image', $attributes['image'])
             ->setAttribute('user_id', $attributes['user_id']);
+
+        if (isset($attributes['image'])) {
+            $movie->setAttribute('image', $attributes['image']);
+        }
 
         $movie->save();
 
