@@ -49,7 +49,7 @@ class UpdateMovieRequest extends FormRequest
                 'required',
                 'regex:/^[\p{Georgian}0-9\s\p{P}]*$/u',
             ],
-            'image' =>  ['required', 'image'],
+            'image' =>  'sometimes|required|image',
             'year' => ['required'],
             'user_id' => ['required', Rule::exists('users', 'id')],
             'genres' => 'required|array',

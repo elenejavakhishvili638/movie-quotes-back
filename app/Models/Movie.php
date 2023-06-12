@@ -28,7 +28,7 @@ class Movie extends Model
         if ($searchTerm) {
             return $query->where(function ($query) use ($searchTerm) {
                 $query->whereRaw("json_extract(title, '$.ka') LIKE ?", ["%{$searchTerm}%"])
-                    ->orWhereRaw("json_extract(title, '$.en') LIKE ?", ["%{$searchTerm}%"]);
+                    ->orWhereRaw("lower(json_extract(title, '$.en')) LIKE ?", ["%{$searchTerm}%"]);
             });
         }
 
