@@ -56,4 +56,18 @@ class StoreMovieRequest extends FormRequest
             'genres.*' => 'exists:genres,id',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.en.unique' => [
+                'en' => 'Movie already exists',
+                'ka' => 'ამ სათაურით ფილმი უკვე არსებობს',
+            ],
+            'title.ka.unique' => [
+                'en' => 'Movie already exists',
+                'ka' => 'ამ სათაურით ფილმი უკვე არსებობს',
+            ],
+        ];
+    }
 }
