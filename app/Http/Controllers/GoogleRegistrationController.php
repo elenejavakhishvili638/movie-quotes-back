@@ -30,6 +30,6 @@ class GoogleRegistrationController extends Controller
 
         Auth::login($user, true);
         session()->regenerate();
-        return redirect('http://localhost:8081');
+        return redirect('http://localhost:8081/news-feed');
     }
 }
