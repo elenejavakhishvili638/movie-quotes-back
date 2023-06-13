@@ -25,7 +25,6 @@ class MovieFactory extends Factory
                 'ka' => $faker->realText(10),
             ],
             'year' => $this->faker->numberBetween($min = 1900, $max = 2023),
-            'genre' => $this->faker->word(),
             'director' => [
                 'en' => $faker->name(),
                 'ka' => $faker->realText(10)

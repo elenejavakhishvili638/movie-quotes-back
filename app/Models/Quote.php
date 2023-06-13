@@ -22,23 +22,24 @@ class Quote extends Model
     public function scopeFilter($query, $searchTerm)
     {
         if ($searchTerm) {
+            $searchTerm = urldecode($searchTerm);
             if (Str::startsWith($searchTerm, '@')) {
                 $movieTitle = Str::substr($searchTerm, 1);
                 return $query->whereHas('movie', function ($query) use ($movieTitle) {
-                    $query->whereRaw("json_extract(title, '$.en') LIKE ?", ["%{$movieTitle}%"])
+                    $query->whereRaw("lower(json_extract(title, '$.en')) LIKE ?", ["%{$movieTitle}%"])
                         ->orWhereRaw("json_extract(title, '$.ka') LIKE ?", ["%{$movieTitle}%"]);
                 });
-            } else if (Str::startsWith($searchTerm, '3')) {
+            } else if (Str::startsWith($searchTerm, '#')) {
                 $quoteText = Str::substr($searchTerm, 1);
                 return $query->whereRaw("json_extract(body, '$.en') LIKE ?", ["%{$quoteText}%"])
                     ->orWhereRaw("json_extract(body, '$.ka') LIKE ?", ["%{$quoteText}%"]);
             }
 
             return $query->whereHas('movie', function ($query) use ($searchTerm) {
-                $query->whereRaw("json_extract(title, '$.en') LIKE ?", ["%{$searchTerm}%"])
+                $query->whereRaw("lower(json_extract(title, '$.en')) LIKE ?", ["%{$searchTerm}%"])
                     ->orWhereRaw("json_extract(title, '$.ka') LIKE ?", ["%{$searchTerm}%"]);
             })
-                ->orWhereRaw("json_extract(body, '$.en') LIKE ?", ["%{$searchTerm}%"])
+                ->orWhereRaw("lower(json_extract(body, '$.en')) LIKE ?", ["%{$searchTerm}%"])
                 ->orWhereRaw("json_extract(body, '$.ka') LIKE ?", ["%{$searchTerm}%"]);
         }
 

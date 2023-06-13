@@ -30,13 +30,13 @@
 <body
     style="background: linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%);padding-left:194px;padding-bottom:109px;padding-right:195px;padding-top:79px">
     <div style='width:100%'>
-        <div style="padding:16px; max-width:520px; margin:0 auto">
+        <div style="padding:16px; max-width:520px; margin:0 auto;">
             <img style="width:22px;height:20px;margin-bottom:56px;" data-image-whitelisted class="CToWUd a6T"
                 data-bit="iit" tabindex="0" src="https://i.ibb.co/Vg8cnJB/Vector.png" />
             <p style="color:#DDCCAA;margin-top:10px;font-size:12px;font-weight:500;margin:0 auto;">MOVIE QUOTES</p>
         </div>
         <div style="margin-top:73px;align-text:left;">
-            <p style="margin-bottom:24px">Hola ekaterine!</p>
+            <p style="margin-bottom:24px">Hola {{ $user->username }}!</p>
             <p>Thanks for joining Movie quotes! We really appreciate it. Please click the button below to verify your
                 account:</p>
             <a href="{{ $url }}" target="_blank"
