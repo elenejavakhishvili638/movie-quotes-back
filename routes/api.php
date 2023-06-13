@@ -53,3 +53,4 @@ Route::get('/genres', function () {
 });
 
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
+Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');

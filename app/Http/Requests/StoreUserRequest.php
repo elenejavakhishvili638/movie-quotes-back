@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
                 'alpha_num',
                 'min:3',
                 'max:15',
-                Rule::unique('users', 'username'),
+                // Rule::unique('users', 'username'),
                 function ($attribute, $value, $fail) {
                     if (strtolower($value) !== $value) {
                         $fail($attribute . ' is not lowercase.');

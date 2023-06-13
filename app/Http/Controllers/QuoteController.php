@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuoteRequest;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class QuoteController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->query('search');
-        $quotes = Quote::with('movie.user')
+        $quotes = Quote::with('movie', 'user', 'comments.user')
             ->filter($searchTerm)
             ->latest()
             ->get();
@@ -32,9 +33,26 @@ class QuoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreQuoteRequest $request)
     {
-        //
+        $attributes = $request->validated();
+
+        $attributes['image'] = request()->file('image')->store('images');
+
+        $quote = new Quote;
+
+        $quote->setTranslations('body', [
+            'en' => $attributes['body']['en'],
+            'ka' => $attributes['body']['ka']
+        ])->setAttribute('image', $attributes['image'])
+            ->setAttribute('user_id', $attributes['user_id'])
+            ->setAttribute('movie_id', $attributes['movie_id']);
+
+        $quote->save();
+
+
+
+        return response()->json($quote, 201);
     }
 
     /**
