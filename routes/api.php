@@ -55,5 +55,6 @@ Route::get('/genres', function () {
 
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
 Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
+Route::delete('/quote/{id}', [QuoteController::class, 'destroy'])->name('quote.destroy');
 
 Route::post('/quotes/{id}/comments', [CommentController::class, 'store'])->name('comment.store');

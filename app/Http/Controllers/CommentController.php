@@ -6,6 +6,8 @@ use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
 use App\Models\Quote;
+use Illuminate\Http\JsonResponse;
+
 
 class CommentController extends Controller
 {
@@ -28,7 +30,7 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCommentRequest $request, $id)
+    public function store(StoreCommentRequest $request, $id): JsonResponse
     {
         $quote = Quote::find($id);
 

@@ -72,7 +72,7 @@ class MovieController extends Controller
 
     public function show($id): JsonResponse
     {
-        $movie = Movie::with(['quotes', 'genres'])->find($id);
+        $movie = Movie::with(['quotes.comments.user', 'genres'])->find($id);
 
         $this->authorize('view', $movie);
         return response()->json($movie);

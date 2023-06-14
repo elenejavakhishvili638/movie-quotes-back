@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Models\Quote;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
 
 class QuoteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $searchTerm = $request->query('search');
         $quotes = Quote::with('movie', 'user', 'comments.user')
@@ -33,7 +35,7 @@ class QuoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreQuoteRequest $request)
+    public function store(StoreQuoteRequest $request): JsonResponse
     {
         $attributes = $request->validated();
 
@@ -82,8 +84,19 @@ class QuoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Quote $quote)
+    public function destroy($id): JsonResponse
     {
-        //
+        $quote = Quote::find($id);
+
+        if ($quote) {
+            $quote->delete();
+            return response()->json([
+                'message' => 'quote deleted successfully.'
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'quote not found.'
+        ], 404);
     }
 }
