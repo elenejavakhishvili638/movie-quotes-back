@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
@@ -54,3 +55,5 @@ Route::get('/genres', function () {
 
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
 Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
+
+Route::post('/quotes/{id}/comments', [CommentController::class, 'store'])->name('comment.store');
