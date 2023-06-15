@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuoteRequest;
+use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +22,7 @@ class QuoteController extends Controller
             ->latest()
             ->get();
 
-        return response()->json($quotes);
+        return new JsonResponse(QuoteResource::collection($quotes));
     }
 
     /**
@@ -60,9 +61,10 @@ class QuoteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Quote $quote)
+    public function show($id)
     {
-        //
+        $quote = Quote::with('comments.user', 'user')->find($id);
+        return response()->json($quote);
     }
 
     /**

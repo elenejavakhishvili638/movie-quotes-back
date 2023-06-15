@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
+use App\Http\Resources\MovieResource;
 use App\Models\Movie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,7 +20,20 @@ class MovieController extends Controller
         $movies = [];
         if (auth()->check()) {
             $searchTerm = $request->query('search');
-            $movies = auth()->user()->movies()->latest()->filter($searchTerm)->get();
+            $movies = MovieResource::collection(
+                auth()->user()->movies()
+                    ->with([
+                        'quotes' => function ($query) {
+                            $query->latest();
+                        },
+                        'genres',
+                        'quotes.comments.user',
+                        'quotes.user'
+                    ])
+                    ->latest()
+                    ->filter($searchTerm)
+                    ->get()
+            );
         }
 
         return response()->json($movies);
@@ -28,9 +42,10 @@ class MovieController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function all()
     {
-        //
+        $movies = Movie::all();
+        return MovieResource::collection($movies);
     }
 
     /**
@@ -70,12 +85,11 @@ class MovieController extends Controller
      * Display the specified resource.
      */
 
-    public function show($id): JsonResponse
+    public function show($id)
     {
-        $movie = Movie::with(['quotes.comments.user', 'genres'])->find($id);
-
+        $movie = Movie::with(['quotes.comments.user', 'genres', 'quotes.user'])->find($id);
         $this->authorize('view', $movie);
-        return response()->json($movie);
+        return new MovieResource($movie);
     }
 
 

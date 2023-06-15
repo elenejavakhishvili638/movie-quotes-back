@@ -11,8 +11,6 @@ class VerificationController extends Controller
     {
         $request->fulfill();
 
-        // auth()->logout();
-
         return response()->json(201);
     }
 }
