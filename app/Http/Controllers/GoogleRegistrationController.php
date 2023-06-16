@@ -26,6 +26,7 @@ class GoogleRegistrationController extends Controller
         ], [
             'username' => $googleUser->name,
             'email' => $googleUser->email,
+            'image' => $googleUser->avatar
         ]);
 
         Auth::login($user, true);
