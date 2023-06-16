@@ -49,9 +49,9 @@ class VerifyEmailNotification extends VerifyEmail
 
         $path = str_replace('/api', '', $signedUrlParts['path']);
 
-        $frontEndDomain = 'http://localhost:8081';
+        $frontEndUrl = env('FRONTEND_URL', 'http://localhost:8081');
 
-        $frontendUrl = $frontEndDomain . $path . '?' . $signedUrlParts['query'];
+        $frontendUrl = $frontEndUrl . $path . '?' . $signedUrlParts['query'];
 
         $frontendUrl .= '&email_verified=true';
 

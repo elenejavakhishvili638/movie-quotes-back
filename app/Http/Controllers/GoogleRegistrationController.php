@@ -26,10 +26,12 @@ class GoogleRegistrationController extends Controller
         ], [
             'username' => $googleUser->name,
             'email' => $googleUser->email,
+            'image' => $googleUser->avatar
         ]);
 
         Auth::login($user, true);
         session()->regenerate();
-        return redirect('http://localhost:8081');
+        $frontEndUrl = env('FRONTEND_URL', 'http://localhost:8081');
+        return redirect($frontEndUrl);
     }
 }

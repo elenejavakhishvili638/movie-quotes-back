@@ -45,6 +45,11 @@ class Movie extends Model
         return $this->hasMany(Quote::class);
     }
 
+    public function myQuotes()
+    {
+        return $this->hasMany(Quote::class)->where('user_id', auth()->id());
+    }
+
     public function genres(): BelongsToMany
     {
         return $this->belongsToMany(Genre::class);
