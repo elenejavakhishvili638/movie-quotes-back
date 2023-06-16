@@ -58,5 +58,6 @@ Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
 Route::get('/quote/{id}', [QuoteController::class, 'show']);
 Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
 Route::delete('/quote/{id}', [QuoteController::class, 'destroy'])->name('quote.destroy');
+Route::patch('/quote/{id}', [QuoteController::class, 'update'])->name('quote.update');
 
 Route::post('/quotes/{id}/comments', [CommentController::class, 'store'])->name('comment.store');

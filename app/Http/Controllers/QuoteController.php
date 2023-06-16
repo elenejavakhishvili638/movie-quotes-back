@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuoteRequest;
+use App\Http\Requests\UpdateQuoteRequest;
 use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -78,9 +79,29 @@ class QuoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quote $quote)
+    public function update(UpdateQuoteRequest $request, $id)
     {
-        //
+        $attributes = $request->validated();
+        $quote = Quote::find($id);
+
+        if ($request->hasFile('image')) {
+            $attributes['image'] = request()->file('image')->store('images');
+        }
+
+        $quote->setTranslations('body', [
+            'en' => $attributes['body']['en'],
+            'ka' => $attributes['body']['ka']
+        ])
+            ->setAttribute('movie_id', $attributes['movie_id'])
+            ->setAttribute('user_id', $attributes['user_id']);
+
+        if (isset($attributes['image'])) {
+            $quote->setAttribute('image', $attributes['image']);
+        }
+
+        $quote->save();
+
+        return response()->json($quote, 201);
     }
 
     /**
