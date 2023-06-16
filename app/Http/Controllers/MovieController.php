@@ -23,12 +23,12 @@ class MovieController extends Controller
             $movies = MovieResource::collection(
                 auth()->user()->movies()
                     ->with([
-                        'quotes' => function ($query) {
+                        'myQuotes' => function ($query) {
                             $query->latest();
                         },
                         'genres',
-                        'quotes.comments.user',
-                        'quotes.user'
+                        'myQuotes.comments.user',
+                        'myQuotes.user'
                     ])
                     ->latest()
                     ->filter($searchTerm)

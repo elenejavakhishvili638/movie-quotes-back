@@ -25,6 +25,7 @@ class MovieResource extends JsonResource
             'description' => $this->getTranslations('description'),
             'director' =>  $this->getTranslations('director'),
             'quotes' => QuoteResource::collection($this->whenLoaded('quotes')),
+            'myQuotes' => QuoteResource::collection($this->whenLoaded('myQuotes')),
             'genres' => GenreResource::collection($this->whenLoaded('genres')),
         ];
     }
