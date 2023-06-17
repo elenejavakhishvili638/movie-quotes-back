@@ -18,10 +18,13 @@ class QuoteController extends Controller
     public function index(Request $request): JsonResponse
     {
         $searchTerm = $request->query('search');
+        $page = $request->query('page', 1);
+        $quotesPerPage = 5;
+
         $quotes = Quote::with('movie', 'user', 'comments.user')
             ->filter($searchTerm)
             ->latest()
-            ->get();
+            ->paginate($quotesPerPage, ['*'], 'page', $page);
 
         return new JsonResponse(QuoteResource::collection($quotes));
     }
