@@ -23,12 +23,12 @@ class MovieController extends Controller
             $movies = MovieResource::collection(
                 auth()->user()->movies()
                     ->with([
-                        'myQuotes' => function ($query) {
+                        'quotes' => function ($query) {
                             $query->latest();
                         },
                         'genres',
-                        'myQuotes.comments.user',
-                        'myQuotes.user'
+                        'quotes.comments.user',
+                        'quotes.user'
                     ])
                     ->latest()
                     ->filter($searchTerm)
@@ -42,11 +42,11 @@ class MovieController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function all()
-    {
-        $movies = Movie::all();
-        return MovieResource::collection($movies);
-    }
+    // public function all()
+    // {
+    //     $movies = Movie::all();
+    //     return MovieResource::collection($movies);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -104,7 +104,7 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMovieRequest $request, $id)
+    public function update(UpdateMovieRequest $request, $id): JsonResponse
     {
         $attributes = $request->validated();
 

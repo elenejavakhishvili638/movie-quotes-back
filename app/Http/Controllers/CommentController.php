@@ -19,17 +19,6 @@ class CommentController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCommentRequest $request, $id): JsonResponse
     {
         $quote = Quote::find($id);
@@ -41,37 +30,5 @@ class CommentController extends Controller
         $comment = $quote->comments()->create($request->validated());
 
         return response()->json($comment, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(UpdateCommentRequest $request, Comment $comment)
-    // {
-    //     //
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Comment $comment)
-    {
-        //
     }
 }

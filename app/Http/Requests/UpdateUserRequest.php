@@ -2,13 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreLikeRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,8 +14,13 @@ class StoreLikeRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        $user = User::findOrFail(request()->route('id'));
+
         return [
-            'user_id' => ['required', Rule::exists('users', 'id')],
+            'username' =>  'sometimes|required',
+            'email' =>  'sometimes|required|email|unique:users,email,' . $user->id,
+            'image' =>  'sometimes|required|image',
         ];
     }
 }

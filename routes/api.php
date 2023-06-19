@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GoogleRegistrationController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\Register\RegistrationController;
 use App\Http\Controllers\Session\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificationController;
 use App\Models\Genre;
 use Illuminate\Http\Request;
@@ -23,9 +25,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/user', [UserController::class, 'index'])->middleware('auth:sanctum')->name('user.show');
+Route::patch('/user/{id}', [UserController::class, 'update'])->name('user.store');
+
 
 Route::post('/register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.store');
@@ -61,3 +67,6 @@ Route::delete('/quote/{id}', [QuoteController::class, 'destroy'])->name('quote.d
 Route::patch('/quote/{id}', [QuoteController::class, 'update'])->name('quote.update');
 
 Route::post('/quotes/{id}/comments', [CommentController::class, 'store'])->name('comment.store');
+
+Route::post('/quotes/{id}/likes', [LikeController::class, 'store'])->name('like.store');
+Route::delete('/quotes/{id}/likes', [LikeController::class, 'destroy'])->name('like.destroy');

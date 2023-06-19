@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\LikeResource;
 use App\Http\Resources\MovieResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -18,13 +19,12 @@ class UserResource extends JsonResource
         // return parent::toArray($request);
         return [
             'id' => $this->id,
+            'google_id' => $this->google_id,
+            'email_verified_at' => $this->email_verified_at,
             'username' => $this->username,
             'email' => $this->email,
             'image' => $this->image,
-            'movies' => MovieResource::collection($this->whenLoaded('movies')),
-            // 'quotes' => QuoteResource::collection($this->whenLoaded('quotes')),
-            // 'created_at' => $this->created_at,
-            // 'updated_at' => $this->updated_at,
+            'like' => LikeResource::collection($this->whenLoaded('likes'))
         ];
     }
 }

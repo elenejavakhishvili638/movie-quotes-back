@@ -21,7 +21,7 @@ class QuoteController extends Controller
         $page = $request->query('page', 1);
         $quotesPerPage = 5;
 
-        $quotes = Quote::with('movie', 'user', 'comments.user')
+        $quotes = Quote::with('movie', 'user', 'comments.user', 'likes')
             ->filter($searchTerm)
             ->latest()
             ->paginate($quotesPerPage, ['*'], 'page', $page);
