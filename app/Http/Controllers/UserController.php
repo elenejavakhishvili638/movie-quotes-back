@@ -24,6 +24,14 @@ class UserController extends Controller
 
         $user = User::find($id);
 
+        if ($request->hasFile('image')) {
+            $attributes['image'] = request()->file('image')->store('images');
+        }
+
+        if (isset($attributes['image'])) {
+            $user->setAttribute('image', $attributes['image']);
+        }
+
         $user->update($attributes);
 
         return response()->json($user, 201);
