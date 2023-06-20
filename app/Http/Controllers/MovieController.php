@@ -87,7 +87,7 @@ class MovieController extends Controller
 
     public function show($id)
     {
-        $movie = Movie::with(['myQuotes.comments.user', 'genres', 'myQuotes.user'])->find($id);
+        $movie = Movie::with(['quotes.comments.user', 'genres', 'quotes.user', 'quotes.likes'])->find($id);
         $this->authorize('view', $movie);
         return new MovieResource($movie);
     }

@@ -40,6 +40,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
+Route::get('/email-change/verify/{id}/{hash}/{token}', [VerificationController::class, 'verifyNewEmail'])->name('email-change.verify');
 
 Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect'])->middleware('web');
 Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callback'])->middleware('web');

@@ -18,9 +18,10 @@ class UpdateUserRequest extends FormRequest
         $user = User::findOrFail(request()->route('id'));
 
         return [
-            'username' =>  'sometimes|required',
+            'username' =>  'sometimes|required|alpha_num|min:3|max:15',
             'email' =>  'sometimes|required|email|unique:users,email,' . $user->id,
             'image' =>  'sometimes|required|image',
+            'password' => ['sometimes', 'alpha_num', 'min:8', 'max:15', 'confirmed'],
         ];
     }
 }
