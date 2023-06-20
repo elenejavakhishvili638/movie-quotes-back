@@ -24,4 +24,14 @@ class UpdateUserRequest extends FormRequest
             'password' => ['sometimes', 'alpha_num', 'min:8', 'max:15', 'confirmed'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => [
+                'en' => 'This email is already used',
+                'ka' => 'ეს იმეილი უკვე გამოყენებულია',
+            ],
+        ];
+    }
 }
