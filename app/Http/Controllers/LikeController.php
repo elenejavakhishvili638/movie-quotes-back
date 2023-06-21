@@ -5,55 +5,57 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLikeRequest;
 use App\Http\Requests\UpdateLikeRequest;
 use App\Models\Like;
+use App\Models\Quote;
 
 class LikeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(StoreLikeRequest $request, $id)
     {
-        //
-    }
+        $quote = Quote::find($id);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreLikeRequest $request)
-    {
-        //
-    }
+        if (!$quote) {
+            return response()->json(['error' => 'Quote not found'], 404);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Like $like)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Like $like)
-    {
-        //
+        $existingLike = $quote->likes()->where('user_id', auth()->id())->first();
+
+        if ($existingLike) {
+
+            return response()->json(['error' => 'You have already liked this quote.'], 409);
+        }
+
+
+        $like = $quote->likes()->create(['user_id' => auth()->id()]);
+
+        return response()->json($like, 201);
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Like $like)
+    public function destroy($id)
     {
-        //
+        $quote = Quote::find($id);
+
+        if (!$quote) {
+            return response()->json(['message' => 'Quote not found.'], 404);
+        }
+
+        $like = $quote->likes()->where('user_id', auth()->id())->first();
+
+        if ($like) {
+            $like->delete();
+            return response()->json([
+                'message' => 'Like deleted successfully.'
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Like not found.'
+        ], 404);
     }
 }

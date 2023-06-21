@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreLikeRequest extends FormRequest
 {
@@ -16,7 +17,7 @@ class StoreLikeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required', Rule::exists('users', 'id')],
         ];
     }
 }

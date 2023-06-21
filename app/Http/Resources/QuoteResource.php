@@ -25,6 +25,7 @@ class QuoteResource extends JsonResource
             'user' => new UserResource($this->whenLoaded('user')),
             'movie' => new MovieResource($this->whenLoaded('movie')),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
+            'likes' => CommentResource::collection($this->whenLoaded('likes')),
         ];
     }
 }
