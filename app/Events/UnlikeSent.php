@@ -10,17 +10,16 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CommentSent implements ShouldBroadcast
+class UnlikeSent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $comment;
     /**
      * Create a new event instance.
      */
-    public function __construct($comment)
+    public function __construct()
     {
-        $this->comment = $comment;
+        //
     }
 
     /**
@@ -31,7 +30,7 @@ class CommentSent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('comments'),
+            new PrivateChannel('channel-name'),
         ];
     }
 }

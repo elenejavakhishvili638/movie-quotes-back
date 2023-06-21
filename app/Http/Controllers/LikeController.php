@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LikeSent;
 use App\Http\Requests\StoreLikeRequest;
 use App\Http\Requests\UpdateLikeRequest;
+use App\Http\Resources\LikeResource;
 use App\Models\Like;
 use App\Models\Quote;
 
 class LikeController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function store(StoreLikeRequest $request, $id)
     {
         $quote = Quote::find($id);
@@ -22,16 +19,14 @@ class LikeController extends Controller
             return response()->json(['error' => 'Quote not found'], 404);
         }
 
-
         $existingLike = $quote->likes()->where('user_id', auth()->id())->first();
 
         if ($existingLike) {
-
             return response()->json(['error' => 'You have already liked this quote.'], 409);
         }
-
-
-        $like = $quote->likes()->create(['user_id' => auth()->id()]);
+        $like = $quote->likes()->create($request->validated());
+        $likeResource = new LikeResource($like->load('user'));
+        event(new LikeSent($likeResource));
 
         return response()->json($like, 201);
     }
