@@ -10,16 +10,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UnlikeSent
+class UnlikeSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $unlike;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($unlike)
     {
-        //
+        $this->unlike = $unlike;
     }
 
     /**
@@ -30,7 +32,7 @@ class UnlikeSent
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new Channel('unlikes'),
         ];
     }
 }

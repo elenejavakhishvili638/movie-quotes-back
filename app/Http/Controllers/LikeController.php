@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\LikeSent;
+use App\Events\UnlikeSent;
 use App\Http\Requests\StoreLikeRequest;
 use App\Http\Requests\UpdateLikeRequest;
 use App\Http\Resources\LikeResource;
@@ -41,6 +42,7 @@ class LikeController extends Controller
         }
 
         $like = $quote->likes()->where('user_id', auth()->id())->first();
+        event(new UnlikeSent($like));
 
         if ($like) {
             $like->delete();
@@ -48,6 +50,7 @@ class LikeController extends Controller
                 'message' => 'Like deleted successfully.'
             ], 200);
         }
+
 
         return response()->json([
             'message' => 'Like not found.'
