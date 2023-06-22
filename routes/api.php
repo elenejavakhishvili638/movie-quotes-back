@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\Register\RegistrationController;
@@ -71,3 +72,6 @@ Route::post('/quotes/{id}/comments', [CommentController::class, 'store'])->name(
 
 Route::post('/quotes/{id}/likes', [LikeController::class, 'store'])->name('like.store');
 Route::delete('/quotes/{id}/likes', [LikeController::class, 'destroy'])->name('like.destroy');
+
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notification.index');
+Route::post('/notification/{id}', [NotificationController::class, 'store'])->name('notification.store');
