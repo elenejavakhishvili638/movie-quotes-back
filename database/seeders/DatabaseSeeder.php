@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(1)->create();
-        Movie::factory(5)->create();
-        Quote::factory(10)->create();
+        // User::factory(1)->create();
+        // Movie::factory(5)->create();
+        // Quote::factory(10)->create();
 
         $genres = ['Action', 'Animation', 'Adventure', 'Biography', 'Comedy', 'Crime', 'Drama', 'Documentary', 'Fantasy', 'Historical', 'Horror', 'Melodrama', 'Musical', 'Reality', 'Science', 'Thriller', 'Western'];
 

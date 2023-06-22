@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('quote_id')->constrained();
             $table->foreignId('action_user_id')->constrained('users');
+            $table->timestamp('read_at')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->string('type');
             $table->timestamps();

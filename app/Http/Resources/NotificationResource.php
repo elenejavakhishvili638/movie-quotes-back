@@ -19,6 +19,7 @@ class NotificationResource extends JsonResource
             'id' => $this->id,
             'type' => $this->type,
             'created_at' => $this->created_at,
+            'read_at' => $this->read_at,
             'user_id' => $this->user_id,
             'action_user_id' => $this->action_user_id,
             'actionUser' => new ActionUserResource($this->whenLoaded('actionUser')),

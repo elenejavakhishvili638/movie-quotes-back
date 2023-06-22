@@ -75,3 +75,5 @@ Route::delete('/quotes/{id}/likes', [LikeController::class, 'destroy'])->name('l
 
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notification.index');
 Route::post('/notification/{id}', [NotificationController::class, 'store'])->name('notification.store');
+Route::post('/notification/{id}/read', [NotificationController::class, 'markAsRead']);
+Route::post('/notification/read/all', [NotificationController::class, 'markAllAsRead']);

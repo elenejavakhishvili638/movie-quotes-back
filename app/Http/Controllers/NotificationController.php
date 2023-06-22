@@ -8,6 +8,7 @@ use App\Http\Resources\NotificationResource;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class NotificationController extends Controller
 {
@@ -26,12 +27,33 @@ class NotificationController extends Controller
         $attributes['user_id'] = $id;
 
         $attributes['action_user_id'] = Auth::id();
+        $notification = null;
 
-        $notification = Notification::create($attributes);
+        if ($attributes['user_id'] != $attributes['action_user_id']) {
 
-        $notificationResource = new NotificationResource($notification->load('actionUser'));
-        event(new NotificationReceived($notificationResource));
+            $notification = Notification::create($attributes);
 
-        return response()->json($notification, 201);
+            $notificationResource = new NotificationResource($notification->load('actionUser'));
+            event(new NotificationReceived($notificationResource));
+        }
+
+        if ($notification !== null) {
+            return response()->json($notification, 201);
+        } else {
+            return response()->json(['message' => 'No notification was created.'], 200);
+        }
+    }
+
+    public function markAsRead($id)
+    {
+        $notification = Notification::find($id);
+        $notification->update(['read_at' => now()]);
+        return response()->json($notification);
+    }
+
+    public function markAllAsRead()
+    {
+        Notification::where('action_user_id', Auth::id())->whereNull('read_at')->update(['read_at' => now()]);
+        return response()->json('All notifications marked as read.');
     }
 }
