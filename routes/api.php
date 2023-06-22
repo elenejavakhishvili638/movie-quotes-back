@@ -50,7 +50,7 @@ Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])-
 Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
-Route::get('/all-movies', [MovieController::class, 'all'])->name('movie.all');
+// Route::get('/all-movies', [MovieController::class, 'all'])->name('movie.all');
 Route::get('/movie/{id}', [MovieController::class, 'show']);
 Route::post('/movie', [MovieController::class, 'store'])->name('movie.store');
 Route::delete('/movie/{id}', [MovieController::class, 'destroy'])->name('movie.destroy');
@@ -75,5 +75,5 @@ Route::delete('/quotes/{id}/likes', [LikeController::class, 'destroy'])->name('l
 
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notification.index');
 Route::post('/notification/{id}', [NotificationController::class, 'store'])->name('notification.store');
+Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
 Route::post('/notification/{id}/read', [NotificationController::class, 'markAsRead']);
-Route::post('/notification/read/all', [NotificationController::class, 'markAllAsRead']);

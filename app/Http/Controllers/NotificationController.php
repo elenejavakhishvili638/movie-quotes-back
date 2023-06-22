@@ -6,9 +6,8 @@ use App\Events\NotificationReceived;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Resources\NotificationResource;
 use App\Models\Notification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+
 
 class NotificationController extends Controller
 {
@@ -53,7 +52,7 @@ class NotificationController extends Controller
 
     public function markAllAsRead()
     {
-        Notification::where('action_user_id', Auth::id())->whereNull('read_at')->update(['read_at' => now()]);
+        Notification::where('user_id', Auth::id())->whereNull('read_at')->update(['read_at' => now()]);
         return response()->json('All notifications marked as read.');
     }
 }

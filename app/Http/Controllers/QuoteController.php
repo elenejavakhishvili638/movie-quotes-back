@@ -12,9 +12,6 @@ use Illuminate\Http\JsonResponse;
 
 class QuoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request): JsonResponse
     {
         $searchTerm = $request->query('search');
@@ -29,60 +26,24 @@ class QuoteController extends Controller
         return new JsonResponse(QuoteResource::collection($quotes));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreQuoteRequest $request): JsonResponse
     {
         $attributes = $request->validated();
 
         $attributes['image'] = request()->file('image')->store('images');
 
-        $quote = new Quote;
-
-        $quote->setTranslations('body', [
-            'en' => $attributes['body']['en'],
-            'ka' => $attributes['body']['ka']
-        ])->setAttribute('image', $attributes['image'])
-            ->setAttribute('user_id', $attributes['user_id'])
-            ->setAttribute('movie_id', $attributes['movie_id']);
-
-        $quote->save();
-
-
+        $quote = Quote::create($attributes);
 
         return response()->json($quote, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $quote = Quote::with('comments.user', 'user')->find($id);
         return response()->json($quote);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Quote $quote)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateQuoteRequest $request, $id)
+    public function update(UpdateQuoteRequest $request, $id): JsonResponse
     {
         $attributes = $request->validated();
         $quote = Quote::find($id);
@@ -91,25 +52,11 @@ class QuoteController extends Controller
             $attributes['image'] = request()->file('image')->store('images');
         }
 
-        $quote->setTranslations('body', [
-            'en' => $attributes['body']['en'],
-            'ka' => $attributes['body']['ka']
-        ])
-            ->setAttribute('movie_id', $attributes['movie_id'])
-            ->setAttribute('user_id', $attributes['user_id']);
-
-        if (isset($attributes['image'])) {
-            $quote->setAttribute('image', $attributes['image']);
-        }
-
-        $quote->save();
+        $quote->update($attributes);
 
         return response()->json($quote, 201);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id): JsonResponse
     {
         $quote = Quote::find($id);
