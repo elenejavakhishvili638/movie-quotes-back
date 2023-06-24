@@ -25,7 +25,8 @@ class MovieController extends Controller
                         },
                         'genres',
                         'quotes.comments.user',
-                        'quotes.user'
+                        'quotes.user',
+                        'quotes.likes'
                     ])
                     ->latest()
                     ->filter($searchTerm)
@@ -52,7 +53,6 @@ class MovieController extends Controller
     public function show($id)
     {
         $movie = Movie::with(['quotes.comments.user', 'genres', 'quotes.user', 'quotes.likes'])->find($id);
-        // $this->authorize('view', $movie);
         return new MovieResource($movie);
     }
 

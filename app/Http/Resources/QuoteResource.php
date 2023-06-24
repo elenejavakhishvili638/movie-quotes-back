@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\CommentResource;
+use App\Http\Resources\MinimalUserResource;
 use App\Http\Resources\MovieResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -17,15 +18,14 @@ class QuoteResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
         return [
             'id' => $this->id,
             'body' => $this->getTranslations('body'),
             'image' => $this->image,
-            'user' => new UserResource($this->whenLoaded('user')),
-            'movie' => new MovieResource($this->whenLoaded('movie')),
+            'user' => new MinimalUserResource($this->whenLoaded('user')),
+            'movie' => new MovieQuoteResource($this->whenLoaded('movie')),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
-            'likes' => CommentResource::collection($this->whenLoaded('likes')),
+            'likes' => LikeResource::collection($this->whenLoaded('likes')),
         ];
     }
 }

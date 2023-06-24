@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CommentResource extends JsonResource
+class MovieQuoteResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +16,8 @@ class CommentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'body' => $this->body,
-            'quote_id' => $this->quote_id,
-            'user' => new MinimalUserResource($this->user),
+            'title' => $this->getTranslations('title'),
+            'year' => $this->year,
         ];
     }
 }

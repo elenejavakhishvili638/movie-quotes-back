@@ -26,17 +26,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::get('/user', [UserController::class, 'index'])->middleware('auth:sanctum')->name('user.show');
 Route::patch('/user/{id}', [UserController::class, 'update'])->name('user.store');
 
 
 Route::post('/register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
-Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.store');
 
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.store');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('login.destroy');
 
 
@@ -50,7 +47,6 @@ Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])-
 Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
-// Route::get('/all-movies', [MovieController::class, 'all'])->name('movie.all');
 Route::get('/movie/{id}', [MovieController::class, 'show']);
 Route::post('/movie', [MovieController::class, 'store'])->name('movie.store');
 Route::delete('/movie/{id}', [MovieController::class, 'destroy'])->name('movie.destroy');
@@ -63,7 +59,6 @@ Route::get('/genres', function () {
 });
 
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
-Route::get('/quote/{id}', [QuoteController::class, 'show']);
 Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
 Route::delete('/quote/{id}', [QuoteController::class, 'destroy'])->name('quote.destroy');
 Route::patch('/quote/{id}', [QuoteController::class, 'update'])->name('quote.update');

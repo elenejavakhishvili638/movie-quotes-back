@@ -23,7 +23,10 @@ class LoginRequest extends FormRequest
             'username' => ['required', 'min:3', function ($attribute, $value, $fail) {
                 $user = User::where('email', $value)->orWhere('username', $value)->first();
                 if (!$user) {
-                    return $fail('The provided credentials are incorrect.');
+                    return $fail(json_encode([
+                        'en' => 'Provided credentials are incorrect',
+                        'ka' => 'სახელი არასწორია',
+                    ]));
                 }
             }],
             'password' => ['required']

@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 
 class QuoteController extends Controller
 {
-    public function index(Request $request): JsonResponse
+    public function index(Request $request)
     {
         $searchTerm = $request->query('search');
         $page = $request->query('page', 1);
@@ -35,12 +35,6 @@ class QuoteController extends Controller
         $quote = Quote::create($attributes);
 
         return response()->json($quote, 201);
-    }
-
-    public function show($id): JsonResponse
-    {
-        $quote = Quote::with('comments.user', 'user')->find($id);
-        return response()->json($quote);
     }
 
     public function update(UpdateQuoteRequest $request, $id): JsonResponse
