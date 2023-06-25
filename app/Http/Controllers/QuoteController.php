@@ -26,6 +26,12 @@ class QuoteController extends Controller
         return new JsonResponse(QuoteResource::collection($quotes));
     }
 
+    public function show($id)
+    {
+        $movie = Quote::with(['user', 'comments.user', 'likes'])->find($id);
+        return new QuoteResource($movie);
+    }
+
     public function store(StoreQuoteRequest $request): JsonResponse
     {
         $attributes = $request->validated();

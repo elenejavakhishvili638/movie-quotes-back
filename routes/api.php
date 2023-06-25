@@ -60,6 +60,7 @@ Route::get('/genres', function () {
 
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
 Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
+Route::get('/quote/{id}', [QuoteController::class, 'show']);
 Route::delete('/quote/{id}', [QuoteController::class, 'destroy'])->name('quote.destroy');
 Route::patch('/quote/{id}', [QuoteController::class, 'update'])->name('quote.update');
 
