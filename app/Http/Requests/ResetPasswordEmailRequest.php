@@ -27,4 +27,14 @@ class ResetPasswordEmailRequest extends FormRequest
             ],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.exists' => [
+                'en' => 'This email is incorrect',
+                'ka' => 'იმეილი არასწორია',
+            ],
+        ];
+    }
 }
