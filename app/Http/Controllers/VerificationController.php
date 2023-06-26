@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\VerifyEmailNotification;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
@@ -45,5 +47,14 @@ class VerificationController extends Controller
         Cache::forget($token);
 
         return response()->json(['status' => 'Email updated successfully.']);
+    }
+
+    public function resend(Request $request)
+    {
+        $user = Auth::user(); 
+
+        $user->notify(new VerifyEmailNotification());
+
+        return response(['message' => 'Verification link resent.']);
     }
 }

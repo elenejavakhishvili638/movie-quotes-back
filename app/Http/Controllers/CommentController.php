@@ -23,9 +23,6 @@ class CommentController extends Controller
 
         $comment = $quote->comments()->create($request->validated());
 
-        $comment['sender'] = auth('sanctum')->user()->username;
-
-        // event(new CommentSent($comment));
         $commentResource = new CommentResource($comment->load('user'));
         event(new CommentSent($commentResource));
 
