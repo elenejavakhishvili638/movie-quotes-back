@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LikeSent;
+use App\Events\UnlikeSent;
 use App\Http\Requests\StoreLikeRequest;
 use App\Http\Requests\UpdateLikeRequest;
-use App\Models\Like;
+use App\Http\Resources\LikeResource;
 use App\Models\Quote;
+use Illuminate\Http\JsonResponse;
 
 class LikeController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function store(StoreLikeRequest $request, $id)
+    public function store(StoreLikeRequest $request, $id): JsonResponse
     {
         $quote = Quote::find($id);
 
@@ -22,22 +20,20 @@ class LikeController extends Controller
             return response()->json(['error' => 'Quote not found'], 404);
         }
 
-
         $existingLike = $quote->likes()->where('user_id', auth()->id())->first();
 
         if ($existingLike) {
-
             return response()->json(['error' => 'You have already liked this quote.'], 409);
         }
-
-
-        $like = $quote->likes()->create(['user_id' => auth()->id()]);
+        $like = $quote->likes()->create($request->validated());
+        $likeResource = new LikeResource($like->load('user'));
+        event(new LikeSent($likeResource));
 
         return response()->json($like, 201);
     }
 
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $quote = Quote::find($id);
 
@@ -46,6 +42,7 @@ class LikeController extends Controller
         }
 
         $like = $quote->likes()->where('user_id', auth()->id())->first();
+        event(new UnlikeSent($like));
 
         if ($like) {
             $like->delete();
@@ -53,6 +50,7 @@ class LikeController extends Controller
                 'message' => 'Like deleted successfully.'
             ], 200);
         }
+
 
         return response()->json([
             'message' => 'Like not found.'

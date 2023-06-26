@@ -30,7 +30,8 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'message' => 'Invalid credentials',
+            'en' => 'Invalid password',
+            'ka' => 'პაროლი არასწორია',
         ], 401);
     }
 

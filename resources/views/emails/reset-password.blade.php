@@ -27,26 +27,30 @@
     </style>
 </head>
 
+
 <body
-    style="background: linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%);padding-left:194px;padding-bottom:109px;padding-right:195px;padding-top:79px">
-    <div style='width:100%'>
-        <div style="padding:16px; max-width:520px; margin:0 auto">
-            <img style="width:22px;height:20px;margin-bottom:56px;" data-image-whitelisted class="CToWUd a6T"
-                data-bit="iit" tabindex="0" src="https://i.ibb.co/Vg8cnJB/Vector.png" />
-            <p style="color:#DDCCAA;margin-top:10px;font-size:12px;font-weight:500;margin:0 auto;">MOVIE QUOTES</p>
+    style="background: linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%);padding:79px 50px 109px 50px;">
+    <div style='width:100%; text-align:center;'>
+        <div style="padding:16px; max-width:520px; margin:0 auto;">
+            <img style="display: block; width:22px; height:20px; margin: 0 auto 10px;" data-image-whitelisted
+                class="CToWUd a6T" data-bit="iit" tabindex="0" src="https://i.ibb.co/Vg8cnJB/Vector.png" />
+            <div class="text-align: center;">
+                <p style="color:#DDCCAA; font-size:12px; font-weight:500; margin:0px auto; text-align: center;">MOVIE
+                    QUOTES</p>
+            </div>
         </div>
-        <div style="margin-top:73px;align-text:left;">
-            <p style="margin-bottom:24px">Hola!</p>
-            <p>Thanks for joining Movie quotes! We really appreciate it. Please click the button below to verify your
-                account:</p>
-            <a href="{{ $url }}" target="_blank"
-                style="background-color:#E31221;display:block;padding-bottom:10px;padding-top:10px;padding-left:13px;padding-right:13px;max-width:128px;border-radius:4px;color:#fff;font-weight:700;margin-bottom:40px;text-decoration:none;text-align:center;font-size:16px;outline:none">Verify
-                Email</a>
-            <p>If clicking doesn't work, you can try copying and pasting it to your browser:</p>
-            <a href="{{ $url }}">{{ $url }}</a>
-            <p style="margin-top:40px;margin-borrom:24px">If you have any problems, please contact us:
-                support@moviequotes.ge</p>
-            <p>MovieQuotes Crew</p>
-        </div>
+    </div>
+    <div style="margin-top:73px; text-align:left; padding:0 50px;">
+        <p style="margin-bottom:24px">Hola!</p>
+        <p>Thanks for joining Movie quotes! We really appreciate it. Please click the button below to verify your
+            account:</p>
+        <a href="{{ $url }}" target="_blank"
+            style="background-color:#E31221; display:inline-block; padding:10px 13px; max-width:128px; border-radius:4px; color:#fff; font-weight:700; margin-bottom:40px; text-decoration:none; font-size:16px; outline:none; text-align: center;">Verify
+            Email</a>
+        <p>If clicking doesn't work, you can try copying and pasting it to your browser:</p>
+        <a href="{{ $url }}">{{ $url }}</a>
+        <p style="margin-top:40px;margin-bottom:24px">If you have any problems, please contact us:
+            support@moviequotes.ge</p>
+        <p>MovieQuotes Crew</p>
     </div>
 </body>

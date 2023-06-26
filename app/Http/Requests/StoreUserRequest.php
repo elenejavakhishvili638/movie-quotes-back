@@ -25,11 +25,6 @@ class StoreUserRequest extends FormRequest
                 'alpha_num',
                 'min:3',
                 'max:15',
-                function ($attribute, $value, $fail) {
-                    if (strtolower($value) !== $value) {
-                        $fail($attribute . ' is not lowercase.');
-                    }
-                },
             ],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'alpha_num', 'min:8', 'max:15', 'confirmed'],
