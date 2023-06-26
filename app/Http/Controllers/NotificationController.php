@@ -7,6 +7,7 @@ use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Resources\NotificationResource;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 
 
 class NotificationController extends Controller
@@ -18,7 +19,7 @@ class NotificationController extends Controller
         return NotificationResource::collection($notifications);
     }
 
-    public function store(StoreNotificationRequest $request, $id)
+    public function store(StoreNotificationRequest $request, $id): JsonResponse
     {
 
         $attributes = $request->validated();
@@ -43,14 +44,14 @@ class NotificationController extends Controller
         }
     }
 
-    public function markAsRead($id)
+    public function markAsRead($id): JsonResponse
     {
         $notification = Notification::find($id);
         $notification->update(['read_at' => now()]);
         return response()->json($notification);
     }
 
-    public function markAllAsRead()
+    public function markAllAsRead(): JsonResponse
     {
         Notification::where('user_id', Auth::id())->whereNull('read_at')->update(['read_at' => now()]);
         return response()->json('All notifications marked as read.');

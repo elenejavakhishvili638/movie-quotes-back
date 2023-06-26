@@ -15,7 +15,6 @@ class StoreNotificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'user_id' => ['required', Rule::exists('users', 'id')],
             'type' => 'required',
             'quote_id' => 'required'
         ];

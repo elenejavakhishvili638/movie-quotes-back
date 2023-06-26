@@ -21,7 +21,7 @@ class VerificationController extends Controller
         return response()->json(201);
     }
 
-    public function verifyNewEmail(Request $request)
+    public function verifyNewEmail(Request $request): JsonResponse
     {
         if (!URL::hasValidSignature($request)) {
             return response()->json(["errors" => ["message" => "Invalid/Expired url provided."]], 401);
@@ -49,12 +49,12 @@ class VerificationController extends Controller
         return response()->json(['status' => 'Email updated successfully.']);
     }
 
-    public function resend(Request $request)
+    public function resend(): JsonResponse
     {
         $user = Auth::user(); 
 
         $user->notify(new VerifyEmailNotification());
 
-        return response(['message' => 'Verification link resent.']);
+        return response()->json(['message' => 'Verification link resent.']);
     }
 }

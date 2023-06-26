@@ -7,12 +7,12 @@ use App\Events\UnlikeSent;
 use App\Http\Requests\StoreLikeRequest;
 use App\Http\Requests\UpdateLikeRequest;
 use App\Http\Resources\LikeResource;
-use App\Models\Like;
 use App\Models\Quote;
+use Illuminate\Http\JsonResponse;
 
 class LikeController extends Controller
 {
-    public function store(StoreLikeRequest $request, $id)
+    public function store(StoreLikeRequest $request, $id): JsonResponse
     {
         $quote = Quote::find($id);
 
@@ -33,7 +33,7 @@ class LikeController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $quote = Quote::find($id);
 

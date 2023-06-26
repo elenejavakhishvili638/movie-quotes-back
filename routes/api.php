@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MovieController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\Session\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificationController;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,51 +26,66 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/user', [UserController::class, 'index'])->middleware('auth:sanctum')->name('user.show');
-Route::patch('/user/{id}', [UserController::class, 'update'])->name('user.store');
-
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user', 'index')->middleware('auth:sanctum')->name('user.show');
+    Route::patch('/user/{id}', 'update')->name('user.store');
+});
 
 Route::post('/register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
 
-Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.store');
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('login.destroy');
-
-
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
-Route::get('/email-change/verify/{id}/{hash}/{token}', [VerificationController::class, 'verifyNewEmail'])->name('email-change.verify');
-Route::post('/email/resend', [VerificationController::class, 'resend']);
-
-Route::get('/auth/redirect', [GoogleRegistrationController::class, 'redirect'])->middleware('web');
-Route::get('/auth/google/callback', [GoogleRegistrationController::class, 'callback'])->middleware('web');
-
-Route::post('/forgot-password', [PasswordResetController::class, 'storeEmail'])->middleware('guest')->name('password.email');
-Route::post('/reset-password', [PasswordResetController::class, 'update'])->middleware('guest')->name('password.update');
-
-Route::get('/movies', [MovieController::class, 'index'])->name('movie.show');
-Route::get('/movie/{id}', [MovieController::class, 'show']);
-Route::post('/movie', [MovieController::class, 'store'])->name('movie.store');
-Route::delete('/movie/{id}', [MovieController::class, 'destroy'])->name('movie.destroy');
-Route::patch('/movie/{id}', [MovieController::class, 'update'])->name('movie.update');
-
-
-Route::get('/genres', function () {
-    $genres = Genre::all();
-    return response()->json($genres);
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/login', 'login')->middleware('guest')->name('login.store');
+    Route::post('/logout', 'logout')->middleware('auth:sanctum')->name('login.destroy');
 });
 
-Route::get('/quotes', [QuoteController::class, 'index'])->name('quote.show');
-Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
-Route::get('/quote/{id}', [QuoteController::class, 'show']);
-Route::delete('/quote/{id}', [QuoteController::class, 'destroy'])->name('quote.destroy');
-Route::patch('/quote/{id}', [QuoteController::class, 'update'])->name('quote.update');
+Route::controller(VerificationController::class)->group(function () {
+    Route::get('/email/verify/{id}/{hash}', 'verify')->middleware('signed')->name('verification.verify');
+    Route::get('/email-change/verify/{id}/{hash}/{token}', 'verifyNewEmail')->name('email-change.verify');
+    Route::post('/email/resend', 'resend');
+});
+
+Route::middleware('web')->group(function () {
+    Route::controller(GoogleRegistrationController::class)->group(function () {
+        Route::get('/auth/redirect', 'redirect');
+        Route::get('/auth/google/callback', 'callback');
+    });
+});
+
+Route::middleware('guest')->group(function () {
+    Route::controller(PasswordResetController::class)->group(function () {
+        Route::post('/forgot-password', 'storeEmail')->name('password.email');
+        Route::post('/reset-password', 'update')->name('password.update');
+    });
+});
+
+Route::controller(MovieController::class)->group(function () {
+    Route::get('/movies', 'index')->name('movie.show');
+    Route::get('/movie/{id}', 'show');
+    Route::post('/movie', 'store')->name('movie.store');
+    Route::delete('/movie/{id}', 'destroy')->name('movie.destroy');
+    Route::patch('/movie/{id}', 'update')->name('movie.update');
+});
+
+Route::get('/genres', [GenreController::class, 'index'])->name('genres.show');
+
+Route::controller(QuoteController::class)->group(function () {
+    Route::get('/quotes', 'index')->name('quote.show');
+    Route::post('/quote', 'store')->name('quote.store');
+    Route::get('/quote/{id}', 'show');
+    Route::delete('/quote/{id}', 'destroy')->name('quote.destroy');
+    Route::patch('/quote/{id}', 'update')->name('quote.update');
+});
 
 Route::post('/quotes/{id}/comments', [CommentController::class, 'store'])->name('comment.store');
 
-Route::post('/quotes/{id}/likes', [LikeController::class, 'store'])->name('like.store');
-Route::delete('/quotes/{id}/likes', [LikeController::class, 'destroy'])->name('like.destroy');
+Route::controller(LikeController::class)->group(function () {
+    Route::post('/quotes/{id}/likes', 'store')->name('like.store');
+    Route::delete('/quotes/{id}/likes', 'destroy')->name('like.destroy');
+});
 
-Route::get('/notifications', [NotificationController::class, 'index'])->name('notification.index');
-Route::post('/notification/{id}', [NotificationController::class, 'store'])->name('notification.store');
-Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
-Route::post('/notification/{id}/read', [NotificationController::class, 'markAsRead']);
+Route::controller(NotificationController::class)->group(function () {
+    Route::get('/notifications','index')->name('notification.index');
+    Route::post('/notification/{id}','store')->name('notification.store');
+    Route::post('/notifications/read-all','markAllAsRead');
+    Route::post('/notification/{id}/read','markAsRead');
+});
