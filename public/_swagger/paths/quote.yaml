@@ -1,39 +1,47 @@
 paths:
-  /movie:
+  /quote:
     post:
       tags:
-        - Movie
-      summary: Stores a new movie
+        - Quote
+      summary: Stores a new quote
       security:
         - sanctumAuth: []
-      description: Store a movie.
+      description: Store a quote.
       requestBody:
-        description: Movie data is needed for movie collection
+        description: Quote data is needed for quote collection
         required: true
         content:
           multipart/form-data:
           # application/json:
             schema:
-              $ref: "../schemas/movie.yaml#/components/schemas/Movie"
+              $ref: "../schemas/quote.yaml#/components/schemas/Quote"
       responses:
         "201":
-          $ref: "../responses/movie.yaml#/components/responses/movies/201"
+          $ref: "../responses/quote.yaml#/components/responses/quotes/201"
         "404":
           $ref: "../common.yaml#/components/responses/404"
         "422":
           $ref: "../common.yaml#/components/responses/422"
-  /movies:
+  /quotes:
     get:
       tags:
-        - Movie
-      summary: Get a list of movies
-      description: Retrieve a list of movies.
+        - Quote
+      summary: Get a list of quotes
+      description: Retrieve a list of quotes.
       parameters:
         - name: search
           in: query
-          description: Search term for filtering movies.
+          description: Search term for filtering quotes.
+          required: false
           schema:
             type: string
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: number
+            default: 1
       responses:
         "200":
           description: Successful response
@@ -42,19 +50,19 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "../schemas/movie.yaml#/components/schemas/Movie"
+                  $ref: "../schemas/quote.yaml#/components/schemas/Quote"
         "404":
           $ref: "../common.yaml#/components/responses/404"
-  /movie/{id}:
+  /quote/{id}:
     get:
       tags:
-        - Movie
-      summary: Get a movie
-      description: Retrieve a movie.
+        - Quote
+      summary: Get a quote
+      description: Retrieve a quote.
       parameters:
         - name: id
           in: path
-          description: ID of the movie to retrieve
+          description: ID of the quote to retrieve
           required: true
           schema:
             type: number
@@ -64,24 +72,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "../schemas/eachMovie.yaml#/components/schemas/eachMovie"
+                $ref: "../schemas/movieQuote.yaml#/components/schemas/movieQuote"
         "404":
           $ref: "../common.yaml#/components/responses/404"
     delete:
       tags:
-        - Movie
-      summary: Delete a movie
-      description: Delete a movie.
+        - Quote
+      summary: Delete a quote
+      description: Delete a quote.
       parameters:
         - name: id
           in: path
-          description: ID of the movie to delete
+          description: ID of the quote to delete
           required: true
           schema:
             type: number
       responses:
         "200":
-          description: Movie deleted successfully
+          description: Quote deleted successfully
           content:
             application/json:
               schema:
@@ -93,12 +101,12 @@ paths:
           $ref: "../common.yaml#/components/responses/404"
     patch:
       tags:
-        - Movie
-      summary: Update a movie
+        - Quote
+      summary: Update a quote
       parameters:
         - name: id
           in: path
-          description: ID of the movie to update
+          description: ID of the quote to update
           required: true
           schema:
             type: number
@@ -108,10 +116,10 @@ paths:
           multipart/form-data:
           # application/json:
             schema:
-              $ref: "../schemas/movie.yaml#/components/schemas/Movie"
+              $ref: "../schemas/quote.yaml#/components/schemas/Quote"
       responses:
         "201":
-          $ref: "../responses/movie.yaml#/components/responses/movies/201"
+          $ref: "../responses/quote.yaml#/components/responses/quotes/201"
         "404":
           $ref: "../common.yaml#/components/responses/404"
         "422":

@@ -25,6 +25,12 @@ paths:
     $ref: "./_swagger/paths/movie.yaml#/paths/~1movies"
   /movie/{id}:
     $ref: "./_swagger/paths/movie.yaml#/paths/~1movie~1{id}"
+  /quote:
+    $ref: "./_swagger/paths/quote.yaml#/paths/~1quote"
+  /quotes:
+    $ref: "./_swagger/paths/quote.yaml#/paths/~1quotes"
+  /quote/{id}:
+    $ref: "./_swagger/paths/quote.yaml#/paths/~1quote~1{id}"
 components:
   securitySchemes:
     sanctumAuth:
