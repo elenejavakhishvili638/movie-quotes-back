@@ -1,0 +1,50 @@
+components:
+  schemas:
+    eachMovie:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            title:
+              type: object
+              properties:
+                en:
+                  type: string                  
+                ka:
+                  type: string                  
+            description:
+              type: object
+              properties:
+                en:
+                  type: string                  
+                ka:
+                  type: string
+            director:
+              type: object
+              properties:
+                en:
+                  type: string
+                ka:
+                  type: string
+            image:
+              type: string
+              format: binary
+            year:
+              type: integer
+              format: number
+              example: 2023
+            user_id:
+              type: integer
+              format: number
+              example: 29
+            genres:
+              type: array
+              items:
+                type: integer
+                format: number
+                example: 1
+            quotes:
+              type: array
+              items:
+                $ref: './movieQuote.yaml#/components/schemas/movieQuote'
+

@@ -1,0 +1,16 @@
+components:
+  responses:
+    loggedinUsers:
+      "201":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                allOf:
+                  - $ref: "../schemas/loggedinUser.yaml#/components/schemas/loggedinUser"
+      "404":
+        $ref: "../common.yaml#/components/responses/404"
+      "422":
+        $ref: "../common.yaml#/components/responses/422"

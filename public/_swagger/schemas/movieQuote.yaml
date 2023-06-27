@@ -1,0 +1,35 @@
+components:
+  schemas:
+    movieQuote:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            body:
+              type: object
+              properties:
+                en:
+                  type: string                  
+                ka:
+                  type: string 
+            image:
+              type: string
+              format: binary
+            user:
+              type: object
+              properties:
+                id:
+                  type: number                  
+                username:
+                  type: string 
+                image:
+                  type: string
+                  format: binary
+            comment:
+              type: array
+              items:
+                $ref: "./comment.yaml#/components/schemas/Comment"
+            like:
+              type: array
+              items:
+                $ref: "./like.yaml#/components/schemas/Like"

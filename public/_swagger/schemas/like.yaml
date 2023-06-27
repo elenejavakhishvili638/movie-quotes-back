@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Like:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            user_id:
+              type: number
+            quote_id:
+              type: number
+         

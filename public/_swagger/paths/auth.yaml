@@ -6,12 +6,46 @@ paths:
       summary: Registers a new user
       description: Registers a new user and returns the created user data.
       requestBody:
-        description: User data needed for registration
+        description: User data is needed for registration
         required: true
         content:
           application/json:
             schema:
               $ref: "../schemas/user.yaml#/components/schemas/User"
+      responses:
+        "201":
+          $ref: "../responses/user.yaml#/components/responses/users/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+  /login:
+    post:
+      tags:
+        - User
+      summary: Logins an user
+      security:
+        - sanctumAuth: []
+      description: Logins an user
+      requestBody:
+        description: User data is needed for login
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/loggedinUser.yaml#/components/schemas/loggedinUser"
+      responses:
+        "201":
+          $ref: "../responses/loggedinUser.yaml#/components/responses/loggedinUsers/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+  /user:
+    get:
+      tags:
+        - User
+      summary: Fetches user
       responses:
         "201":
           $ref: "../responses/user.yaml#/components/responses/users/201"

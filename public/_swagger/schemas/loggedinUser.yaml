@@ -1,8 +1,9 @@
 components:
   schemas:
-    User:
+    loggedinUser:
       allOf:
         - $ref: "../common.yaml#/components/schemas/Id"
+        - $ref: "../common.yaml#/components/schemas/TimeStamps"
         - type: object
           properties:
             username:
@@ -14,12 +15,11 @@ components:
             password:
               type: string
               example: 123elene
-            password_confirmation:
-              type: string
-              example: 123elene
           required:
             - username
             - email
             - password
-            - password_confirmation    
-        - $ref: "../common.yaml#/components/schemas/TimeStamps"
+          oneOf:
+            - required: [username]
+            - required: [email]
+
