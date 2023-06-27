@@ -35,6 +35,8 @@ paths:
     $ref: "./_swagger/paths/genres.yaml#/paths/~1genres"
   /quotes/{id}/comments:
     $ref: "./_swagger/paths/comments.yaml#/paths/~1quotes~1{id}~1comments"
+  /quotes/{id}/likes:
+    $ref: "./_swagger/paths/likes.yaml#/paths/~1quotes~1{id}~1likes"
 components:
   securitySchemes:
     sanctumAuth:

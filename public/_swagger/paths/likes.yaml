@@ -1,0 +1,55 @@
+paths:
+  /quotes/{id}/likes:
+    post:
+      summary: Create a like for a quote
+      tags:
+        - Likes
+      parameters:
+        - name: id
+          in: path
+          description: ID of the quote to like
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/like.yaml#/components/schemas/Like"
+      responses:
+        "201":
+          description: Liked successfully
+        "404":
+          description: Quote not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    delete:
+      summary: Remove a like for a quote
+      tags:
+        - Likes
+      parameters:
+        - name: id
+          in: path
+          description: ID of the quote to unlike
+          required: true
+          schema:
+            type: number
+      responses:
+        "201":
+          description: Unliked successfully
+        "404":
+          description: Quote not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    
