@@ -28,7 +28,7 @@ components:
             comment:
               type: array
               items:
-                $ref: "./comment.yaml#/components/schemas/Comment"
+                $ref: "./movieComment.yaml#/components/schemas/Comment"
             like:
               type: array
               items:

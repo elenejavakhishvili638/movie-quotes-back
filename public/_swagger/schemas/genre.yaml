@@ -1,0 +1,10 @@
+components:
+  schemas:
+    Genres:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            name:
+              type: string
+         
