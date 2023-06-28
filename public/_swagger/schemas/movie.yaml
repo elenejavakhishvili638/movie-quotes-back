@@ -5,49 +5,42 @@ components:
         - $ref: "../common.yaml#/components/schemas/Id"
         - type: object
           properties:
-            title:
-              type: object
-              properties:
-                en:
-                  type: string                  
-                ka:
-                  type: string                  
-            description:
-              type: object
-              properties:
-                en:
-                  type: string                  
-                ka:
-                  type: string
-            director:
-              type: object
-              properties:
-                en:
-                  type: string
-                ka:
-                  type: string
+            title[en]:
+              type: string    
+              example: The Grand Budapest Hotel              
+            title[ka]:
+              type: string   
+              example: სასტუმრო გრანდ ბუდაპეშტი              
+            description[en]:
+              type: string
+              example: Gustave H, a concierge, is wrongly framed for murder at the Grand Budapest Hotel. In the process of proving his innocence, he befriends a lobby boy.                  
+            description[ka]:
+              type: string    
+            director[en]:
+              type: string      
+              example: Wes Anderson            
+            director[ka]:
+              type: string 
+              example: ვეს ანდერსონი   
             image:
               type: string
               format: binary
             year:
               type: integer
-              format: number
-              example: 2023
+              example: 2014
             user_id:
               type: integer
-              format: number
-              example: 29
-            genres:
-              type: array
-              items:
-                type: integer
-                format: number
-                example: 1
+            genres[0]:
+              type: integer
+              example: 7
       required:
-        - title
-        - description
-        - director
+        - title[en]
+        - title[ka]
+        - description[en]
+        - description[ka]
+        - director[en]
+        - director[ka]
         - image
         - year
         - user_id
-        - genres
+        - genres[0]

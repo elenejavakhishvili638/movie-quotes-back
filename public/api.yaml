@@ -17,8 +17,8 @@ paths:
     $ref: "./_swagger/paths/auth.yaml#/paths/~1login"
   /user:
     $ref: "./_swagger/paths/auth.yaml#/paths/~1user"
-  /verify/{id}/{hash}:
-    $ref: "./_swagger/paths/email.yaml#/paths/~1verify"
+  # /verify/{id}/{hash}:
+  #   $ref: "./_swagger/paths/email.yaml#/paths/~1verify"
   /movie:
     $ref: "./_swagger/paths/movie.yaml#/paths/~1movie"
   /movies:
@@ -37,6 +37,14 @@ paths:
     $ref: "./_swagger/paths/comments.yaml#/paths/~1quotes~1{id}~1comments"
   /quotes/{id}/likes:
     $ref: "./_swagger/paths/likes.yaml#/paths/~1quotes~1{id}~1likes"
+  /notifications:
+    $ref: "./_swagger/paths/notification.yaml#/paths/~1notifications"
+  /notification/{id}:
+    $ref: "./_swagger/paths/notification.yaml#/paths/~1notification~1{id}"
+  /notifications/read-all:
+    $ref: "./_swagger/paths/notification.yaml#/paths/~1notifications~1read-all"
+  /notification/{id}/read:
+    $ref: "./_swagger/paths/notification.yaml#/paths/~1notification~1{id}~1read"
 components:
   securitySchemes:
     sanctumAuth:

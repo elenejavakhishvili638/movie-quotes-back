@@ -1,0 +1,29 @@
+components:
+  schemas:
+    Notification:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            user_id:
+              type: number
+            type:
+              type: string
+            created_at:
+              type: string
+              example: "2022-07-26T20:06:02.000000Z"
+            read_at:
+              type: string
+              example: "2022-07-26T20:06:02.000000Z"
+            action_user_id:
+              type: number
+            actionUser:
+              type: object
+              properties:
+                id:
+                  type: number                  
+                username:
+                  type: string 
+                image:
+                  type: string
+                  format: binary

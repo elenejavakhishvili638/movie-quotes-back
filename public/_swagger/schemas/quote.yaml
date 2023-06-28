@@ -5,13 +5,12 @@ components:
         - $ref: "../common.yaml#/components/schemas/Id"
         - type: object
           properties:                 
-            body:
-              type: object
-              properties:
-                en:
-                  type: string
-                ka:
-                  type: string
+            body[en]:
+              type: string    
+              example: The Grand Budapest Hotel              
+            body[ka]:
+              type: string   
+              example: სასტუმრო გრანდ ბუდაპეშტი  
             image:
               type: string
               format: binary

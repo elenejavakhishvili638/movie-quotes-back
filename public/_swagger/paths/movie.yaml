@@ -12,7 +12,6 @@ paths:
         required: true
         content:
           multipart/form-data:
-          # application/json:
             schema:
               $ref: "../schemas/movie.yaml#/components/schemas/Movie"
       responses:
