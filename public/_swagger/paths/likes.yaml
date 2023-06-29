@@ -29,6 +29,8 @@ paths:
                 properties:
                   error:
                     type: string
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
     delete:
       summary: Remove a like for a quote
       tags:
@@ -52,4 +54,5 @@ paths:
                 properties:
                   error:
                     type: string
-    
+        "401":
+          $ref: "../common.yaml#/components/responses/401"

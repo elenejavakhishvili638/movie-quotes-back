@@ -19,6 +19,8 @@ paths:
           $ref: "../common.yaml#/components/responses/404"
         "422":
           $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
   /quotes:
     get:
       tags:
@@ -50,6 +52,8 @@ paths:
                   $ref: "../schemas/quote.yaml#/components/schemas/Quote"
         "404":
           $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
   /quote/{id}:
     get:
       tags:
@@ -72,6 +76,8 @@ paths:
                 $ref: "../schemas/movieQuote.yaml#/components/schemas/movieQuote"
         "404":
           $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
     delete:
       tags:
         - Quote
@@ -96,6 +102,8 @@ paths:
                     type: string
         "404":
           $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
     patch:
       tags:
         - Quote
@@ -120,3 +128,5 @@ paths:
           $ref: "../common.yaml#/components/responses/404"
         "422":
           $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"

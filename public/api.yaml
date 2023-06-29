@@ -7,8 +7,8 @@ info:
 servers:
   - url: http://localhost:8000/api
     description: local server
-  # - url: http://producation.app/api
-  #   description: production server
+  - url: http://producation.app/api
+    description: production server
 
 paths:
   /register:
@@ -56,4 +56,4 @@ components:
     sanctumAuth:
       type: apiKey
       in: cookie
-      name: X-CSRF-TOKEN
+      name: X-XSRF-TOKEN

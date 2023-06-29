@@ -16,3 +16,5 @@ paths:
                   $ref: "../schemas/genre.yaml#/components/schemas/Genres"
         "404":
           $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"

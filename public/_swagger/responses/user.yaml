@@ -10,7 +10,3 @@ components:
               items:
                 allOf:
                   - $ref: "../schemas/user.yaml#/components/schemas/User"
-      "404":
-        $ref: "../common.yaml#/components/responses/404"
-      "422":
-        $ref: "../common.yaml#/components/responses/422"

@@ -19,6 +19,8 @@ paths:
           $ref: "../common.yaml#/components/responses/404"
         "422":
           $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
   /movies:
     get:
       tags:
@@ -42,6 +44,8 @@ paths:
                   $ref: "../schemas/movie.yaml#/components/schemas/Movie"
         "404":
           $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
   /movie/{id}:
     get:
       tags:
@@ -64,6 +68,8 @@ paths:
                 $ref: "../schemas/eachMovie.yaml#/components/schemas/eachMovie"
         "404":
           $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
     delete:
       tags:
         - Movie
@@ -88,6 +94,8 @@ paths:
                     type: string
         "404":
           $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
     patch:
       tags:
         - Movie
@@ -112,3 +120,5 @@ paths:
           $ref: "../common.yaml#/components/responses/404"
         "422":
           $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
