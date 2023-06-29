@@ -1,0 +1,13 @@
+components:
+  responses:
+    users:
+      "201":
+        description: OK
+        content:
+          application/json :
+            schema:
+              type: object
+              properties:
+                data:
+                  allOf:
+                    - $ref: "../schemas/authUser.yaml#/components/schemas/User"

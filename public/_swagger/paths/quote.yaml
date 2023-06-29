@@ -4,8 +4,6 @@ paths:
       tags:
         - Quote
       summary: Stores a new quote
-      security:
-        - sanctumAuth: []
       description: Store a quote.
       requestBody:
         description: Quote data is needed for quote collection
@@ -113,7 +111,6 @@ paths:
         required: true
         content:
           multipart/form-data:
-          # application/json:
             schema:
               $ref: "../schemas/quote.yaml#/components/schemas/Quote"
       responses:

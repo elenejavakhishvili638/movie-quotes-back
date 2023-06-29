@@ -51,10 +51,10 @@ class MovieController extends Controller
     }
 
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $movie = Movie::with(['quotes.comments.user', 'genres', 'quotes.user', 'quotes.likes'])->find($id);
-        return new MovieResource($movie);
+        return response()->json(new MovieResource($movie));
     }
 
 

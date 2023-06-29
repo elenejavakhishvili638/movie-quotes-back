@@ -1,6 +1,6 @@
 components:
   schemas:
-    User:
+    updateUser:
       allOf:
         - $ref: "../common.yaml#/components/schemas/Id"
         - type: object
@@ -8,11 +8,6 @@ components:
             username:
               type: string
               example: elene
-            image:
-              type: string
-              format: binary
-            google_id:
-              type: number
             email:
               type: string
               example: elene@redberry.com
@@ -22,6 +17,11 @@ components:
             password_confirmation:
               type: string
               example: 123elene
+            image:
+              type: string
+              format: binary
+            google_id:
+              type: number
           required:
             - username
             - email

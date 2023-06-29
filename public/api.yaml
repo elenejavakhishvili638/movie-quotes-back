@@ -15,8 +15,12 @@ paths:
     $ref: "./_swagger/paths/auth.yaml#/paths/~1register"
   /login:
     $ref: "./_swagger/paths/auth.yaml#/paths/~1login"
+  /logout:
+    $ref: "./_swagger/paths/auth.yaml#/paths/~1logout"
   /user:
     $ref: "./_swagger/paths/auth.yaml#/paths/~1user"
+  /user/{id}:
+    $ref: "./_swagger/paths/auth.yaml#/paths/~1user~1{id}"    
   /forgot-password:
     $ref: "./_swagger/paths/password.yaml#/paths/~1forgot-password"
   /reset-password:
@@ -53,7 +57,3 @@ components:
       type: apiKey
       in: cookie
       name: X-CSRF-TOKEN
-    # schemas:
-    #   Movie:
-    #     allOf:
-    #       - $ref: "./_swagger/schemas/movie.yaml#/components/schemas/Movie" 

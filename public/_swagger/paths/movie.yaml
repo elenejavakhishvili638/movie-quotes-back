@@ -4,8 +4,6 @@ paths:
       tags:
         - Movie
       summary: Stores a new movie
-      security:
-        - sanctumAuth: []
       description: Store a movie.
       requestBody:
         description: Movie data is needed for movie collection
@@ -105,7 +103,6 @@ paths:
         required: true
         content:
           multipart/form-data:
-          # application/json:
             schema:
               $ref: "../schemas/movie.yaml#/components/schemas/Movie"
       responses:

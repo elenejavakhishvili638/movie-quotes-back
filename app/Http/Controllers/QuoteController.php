@@ -26,10 +26,10 @@ class QuoteController extends Controller
         return new JsonResponse(QuoteResource::collection($quotes));
     }
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $quote = Quote::with(['user', 'comments.user', 'likes'])->find($id);
-        return new QuoteResource($quote);
+        return response()->json(new QuoteResource($quote));
     }
 
     public function store(StoreQuoteRequest $request): JsonResponse
