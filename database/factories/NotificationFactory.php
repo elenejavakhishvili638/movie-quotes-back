@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Quote;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,11 @@ class NotificationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'action_user_id' => User::factory(),
+            'quote_id' => Quote::factory(),
+            'read_at' => now(),
+            'type' => $this->faker->randomElement(['comment', 'like']),
         ];
     }
 }
