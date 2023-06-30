@@ -52,8 +52,22 @@ class UpdateMovieRequest extends FormRequest
             'image' =>  'sometimes|required|image',
             'year' => ['required'],
             'user_id' => ['required', Rule::exists('users', 'id')],
-            'genres' => 'required|array',
+            'genres' => 'required',
             'genres.*' => 'exists:genres,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.en.unique' => [
+                'en' => 'This title is already used',
+                'ka' => 'ეს ფილმი უკვე გამოყენებულია',
+            ],
+            'title.ka.unique' => [
+                'en' => 'This title is already used',
+                'ka' => 'ეს ფილმი უკვე გამოყენებულია',
+            ],
         ];
     }
 }

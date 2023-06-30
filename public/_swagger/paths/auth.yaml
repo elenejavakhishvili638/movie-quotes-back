@@ -6,7 +6,7 @@ paths:
       summary: Registers a new user
       description: Registers a new user and returns the created user data.
       requestBody:
-        description: User data needed for registration
+        description: User data is needed for registration
         required: true
         content:
           application/json:
@@ -19,3 +19,85 @@ paths:
           $ref: "../common.yaml#/components/responses/404"
         "422":
           $ref: "../common.yaml#/components/responses/422"
+  /login:
+    post:
+      tags:
+        - User
+      summary: Logins an user
+      description: Logins an user
+      requestBody:
+        description: User data is needed for login
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/loggedinUser.yaml#/components/schemas/loggedinUser"
+      responses:
+        "201":
+          $ref: "../responses/loggedinUser.yaml#/components/responses/loggedinUsers/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+  /logout:
+    post:
+      tags:
+        - User
+      summary: Logs out user
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+  /user:
+    get:
+      security:
+        - sanctumAuth: []
+      tags:
+        - User
+      summary: Fetches user
+      responses:
+        "201":
+          $ref: "../responses/authUser.yaml#/components/responses/users/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+  /user/{id}:
+    patch:
+      tags:
+        - User
+      summary: Update user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: User ID
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "../schemas/updateUser.yaml#/components/schemas/updateUser"
+      responses:
+        '201':
+          $ref: "../responses/user.yaml#/components/responses/users/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"

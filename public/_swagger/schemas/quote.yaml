@@ -1,0 +1,31 @@
+components:
+  schemas:
+    Quote:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:                 
+            body[en]:
+              type: string    
+              example: The Grand Budapest Hotel              
+            body[ka]:
+              type: string   
+              example: სასტუმრო გრანდ ბუდაპეშტი  
+            image:
+              type: string
+              format: binary
+            user_id:
+              type: integer
+              format: number
+              example: 29
+            movie_id:
+              type: integer
+              format: number
+              example: 1
+      required:
+        - body
+        - image
+        - year
+        - user_id
+        - movie_id
+

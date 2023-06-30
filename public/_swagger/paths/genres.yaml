@@ -1,0 +1,20 @@
+paths:
+  /genres:
+    get:
+      tags:
+        - Genres
+      summary: Get a list of genres
+      description: Retrieve a list of genres.
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../schemas/genre.yaml#/components/schemas/Genres"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"

@@ -1,6 +1,6 @@
 components:
   responses:
-    users:
+    loggedinUsers:
       "201":
         description: OK
         content:
@@ -9,4 +9,4 @@ components:
               type: array
               items:
                 allOf:
-                  - $ref: "../schemas/user.yaml#/components/schemas/User"
+                  - $ref: "../schemas/loggedinUser.yaml#/components/schemas/loggedinUser"

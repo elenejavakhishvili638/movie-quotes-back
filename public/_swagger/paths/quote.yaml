@@ -1,0 +1,132 @@
+paths:
+  /quote:
+    post:
+      tags:
+        - Quote
+      summary: Stores a new quote
+      description: Store a quote.
+      requestBody:
+        description: Quote data is needed for quote collection
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "../schemas/quote.yaml#/components/schemas/Quote"
+      responses:
+        "201":
+          $ref: "../responses/quote.yaml#/components/responses/quotes/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+  /quotes:
+    get:
+      tags:
+        - Quote
+      summary: Get a list of quotes
+      description: Retrieve a list of quotes.
+      parameters:
+        - name: search
+          in: query
+          description: Search term for filtering quotes.
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: number
+            default: 1
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../schemas/quote.yaml#/components/schemas/Quote"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+  /quote/{id}:
+    get:
+      tags:
+        - Quote
+      summary: Get a quote
+      description: Retrieve a quote.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the quote to retrieve
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/movieQuote.yaml#/components/schemas/movieQuote"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+    delete:
+      tags:
+        - Quote
+      summary: Delete a quote
+      description: Delete a quote.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the quote to delete
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Quote deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+    patch:
+      tags:
+        - Quote
+      summary: Update a quote
+      parameters:
+        - name: id
+          in: path
+          description: ID of the quote to update
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "../schemas/quote.yaml#/components/schemas/Quote"
+      responses:
+        "201":
+          $ref: "../responses/quote.yaml#/components/responses/quotes/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"

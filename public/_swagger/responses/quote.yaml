@@ -1,0 +1,10 @@
+components:
+  responses:
+    quotes:
+      "201":
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "../schemas/quote.yaml#/components/schemas/Quote"

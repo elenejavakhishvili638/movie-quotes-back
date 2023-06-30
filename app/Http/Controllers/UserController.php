@@ -49,8 +49,6 @@ class UserController extends Controller
             $originalEmail = $user->email;
             $user->email = $newEmail;
 
-            Log::info('Received new em', ['new Email' => $user->email]);
-
             $user->notify(new UpdateEmailNotification($newEmail));
 
 

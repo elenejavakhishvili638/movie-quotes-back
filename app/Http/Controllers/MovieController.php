@@ -8,12 +8,14 @@ use App\Http\Resources\MovieResource;
 use App\Models\Movie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MovieController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
         $movies = [];
+        Log::info('sss'.auth()->user());
         if (auth()->check()) {
             $searchTerm = $request->query('search');
             $movies = MovieResource::collection(
@@ -49,10 +51,10 @@ class MovieController extends Controller
     }
 
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $movie = Movie::with(['quotes.comments.user', 'genres', 'quotes.user', 'quotes.likes'])->find($id);
-        return new MovieResource($movie);
+        return response()->json(new MovieResource($movie));
     }
 
 

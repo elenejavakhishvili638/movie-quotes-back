@@ -1,0 +1,124 @@
+paths:
+  /movie:
+    post:
+      tags:
+        - Movie
+      summary: Stores a new movie
+      description: Store a movie.
+      requestBody:
+        description: Movie data is needed for movie collection
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "../schemas/movie.yaml#/components/schemas/Movie"
+      responses:
+        "201":
+          $ref: "../responses/movie.yaml#/components/responses/movies/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+  /movies:
+    get:
+      tags:
+        - Movie
+      summary: Get a list of movies
+      description: Retrieve a list of movies.
+      parameters:
+        - name: search
+          in: query
+          description: Search term for filtering movies.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../schemas/movie.yaml#/components/schemas/Movie"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+  /movie/{id}:
+    get:
+      tags:
+        - Movie
+      summary: Get a movie
+      description: Retrieve a movie.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the movie to retrieve
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/eachMovie.yaml#/components/schemas/eachMovie"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+    delete:
+      tags:
+        - Movie
+      summary: Delete a movie
+      description: Delete a movie.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the movie to delete
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Movie deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"
+    patch:
+      tags:
+        - Movie
+      summary: Update a movie
+      parameters:
+        - name: id
+          in: path
+          description: ID of the movie to update
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "../schemas/movie.yaml#/components/schemas/Movie"
+      responses:
+        "201":
+          $ref: "../responses/movie.yaml#/components/responses/movies/201"
+        "404":
+          $ref: "../common.yaml#/components/responses/404"
+        "422":
+          $ref: "../common.yaml#/components/responses/422"
+        "401":
+          $ref: "../common.yaml#/components/responses/401"

@@ -23,7 +23,6 @@ class UserResource extends JsonResource
             'username' => $this->username,
             'email' => $this->email,
             'image' => $this->image,
-            'like' => LikeResource::collection($this->whenLoaded('likes'))
         ];
     }
 }

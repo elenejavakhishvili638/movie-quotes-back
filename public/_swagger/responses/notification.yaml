@@ -1,0 +1,10 @@
+components:
+  responses:
+    notifications:
+      "201":
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "../schemas/postNotification.yaml#/components/schemas/postNotification"

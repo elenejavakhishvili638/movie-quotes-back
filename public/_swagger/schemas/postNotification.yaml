@@ -1,0 +1,17 @@
+components:
+  schemas:
+    postNotification:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - $ref: "../common.yaml#/components/schemas/TimeStamps"
+        - type: object
+          properties:
+            user_id:
+              type: number
+            type:
+              type: string
+            read_at:
+              type: string
+              example: "2022-07-26T20:06:02.000000Z"
+            action_user_id:
+              type: number

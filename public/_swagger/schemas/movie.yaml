@@ -1,0 +1,46 @@
+components:
+  schemas:
+    Movie:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            title[en]:
+              type: string    
+              example: The Grand Budapest Hotel              
+            title[ka]:
+              type: string   
+              example: სასტუმრო გრანდ ბუდაპეშტი              
+            description[en]:
+              type: string
+              example: Gustave H, a concierge, is wrongly framed for murder at the Grand Budapest Hotel. In the process of proving his innocence, he befriends a lobby boy.                  
+            description[ka]:
+              type: string    
+            director[en]:
+              type: string      
+              example: Wes Anderson            
+            director[ka]:
+              type: string 
+              example: ვეს ანდერსონი   
+            image:
+              type: string
+              format: binary
+            year:
+              type: integer
+              example: 2014
+            user_id:
+              type: integer
+            genres[0]:
+              type: integer
+              example: 7
+      required:
+        - title[en]
+        - title[ka]
+        - description[en]
+        - description[ka]
+        - director[en]
+        - director[ka]
+        - image
+        - year
+        - user_id
+        - genres[0]

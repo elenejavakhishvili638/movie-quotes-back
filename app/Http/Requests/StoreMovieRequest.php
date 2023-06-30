@@ -45,7 +45,7 @@ class StoreMovieRequest extends FormRequest
             'image' =>  ['required', 'image'],
             'year' => ['required'],
             'user_id' => ['required', Rule::exists('users', 'id')],
-            'genres' => 'required|array',
+            'genres' => 'required',
             'genres.*' => 'exists:genres,id',
         ];
     }

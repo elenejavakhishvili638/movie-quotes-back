@@ -1,0 +1,34 @@
+components:
+  schemas:
+    movieQuote:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            body[en]:
+              type: string    
+              example: The Grand Budapest Hotel              
+            body[ka]:
+              type: string   
+              example: სასტუმრო გრანდ ბუდაპეშტი  
+            image:
+              type: string
+              format: binary
+            user:
+              type: object
+              properties:
+                id:
+                  type: number                  
+                username:
+                  type: string 
+                image:
+                  type: string
+                  format: binary
+            comment:
+              type: array
+              items:
+                $ref: "./movieComment.yaml#/components/schemas/Comment"
+            like:
+              type: array
+              items:
+                $ref: "./like.yaml#/components/schemas/Like"

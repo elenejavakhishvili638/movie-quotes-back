@@ -32,7 +32,7 @@ class AuthController extends Controller
         return response()->json([
             'en' => 'Invalid password',
             'ka' => 'პაროლი არასწორია',
-        ], 401);
+        ], 422);
     }
 
     public function logout(Request $request): JsonResponse

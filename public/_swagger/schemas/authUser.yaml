@@ -1,0 +1,18 @@
+components:
+  schemas:
+    User:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            username:
+              type: string
+            image:
+              type: string
+              format: binary
+            google_id:
+              type: number
+            email:
+              type: string
+            email_verified_at:
+              type: string

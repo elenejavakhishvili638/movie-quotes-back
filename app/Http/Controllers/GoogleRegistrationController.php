@@ -21,13 +21,21 @@ class GoogleRegistrationController extends Controller
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
 
-        $user = User::updateOrCreate([
-            'google_id' => $googleUser->id,
-        ], [
-            'username' => $googleUser->name,
-            'email' => $googleUser->email,
-            'image' => $googleUser->avatar
-        ]);
+        $user = User::where('google_id', $googleUser->id)->first();
+
+        if (!$user) {
+            $user = User::create([
+                'google_id' => $googleUser->id,
+                'username' => $googleUser->name,
+                'email' => $googleUser->email,
+                'image' => $googleUser->avatar
+            ]);
+        } else {
+            $user->update([
+                'username' => $googleUser->name,
+                'email' => $googleUser->email,
+            ]);
+        }
 
         Auth::login($user, true);
         session()->regenerate();

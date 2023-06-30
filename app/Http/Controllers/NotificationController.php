@@ -13,10 +13,10 @@ use Illuminate\Http\JsonResponse;
 class NotificationController extends Controller
 {
 
-    public function index()
+    public function index(): JsonResponse
     {
         $notifications = Notification::with('actionUser')->where('user_id', Auth::id())->latest()->get();
-        return NotificationResource::collection($notifications);
+        return new JsonResponse(NotificationResource::collection($notifications));
     }
 
     public function store(StoreNotificationRequest $request, $id): JsonResponse

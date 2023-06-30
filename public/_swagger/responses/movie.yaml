@@ -1,0 +1,10 @@
+components:
+  responses:
+    movies:
+      "201":
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "../schemas/movie.yaml#/components/schemas/Movie"

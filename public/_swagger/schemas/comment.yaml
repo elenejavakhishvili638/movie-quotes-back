@@ -1,0 +1,13 @@
+components:
+  schemas:
+    Comments:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - type: object
+          properties:
+            body:
+              type: string
+            quote_id:
+              type: number
+            user_id:
+              type: number
