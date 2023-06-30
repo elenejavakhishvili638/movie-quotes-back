@@ -56,4 +56,18 @@ class UpdateMovieRequest extends FormRequest
             'genres.*' => 'exists:genres,id',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.en.unique' => [
+                'en' => 'This title is already used',
+                'ka' => 'ეს ფილმი უკვე გამოყენებულია',
+            ],
+            'title.ka.unique' => [
+                'en' => 'This title is already used',
+                'ka' => 'ეს ფილმი უკვე გამოყენებულია',
+            ],
+        ];
+    }
 }
