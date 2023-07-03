@@ -7,7 +7,7 @@ info:
 servers:
   - url: http://localhost:8000/api
     description: local server
-  - url: http://producation.app/api
+  - url: https://movie-quotes-back.elene-javakhishvili.redberryinternship.ge/api
     description: production server
 
 paths:
@@ -57,3 +57,7 @@ components:
       type: apiKey
       in: cookie
       name: X-XSRF-TOKEN
+    laravelSession:
+      type: apiKey
+      in: cookie
+      name: laravel_session

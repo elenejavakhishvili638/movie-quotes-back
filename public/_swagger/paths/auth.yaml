@@ -33,6 +33,14 @@ paths:
             schema:
               $ref: "../schemas/loggedinUser.yaml#/components/schemas/loggedinUser"
       responses:
+        "200":
+          description: User logged in successfully
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: X-XSRF-TOKEN=abcdef12345; Path=/; HttpOnly
+              description: Contains the laravel_session and XSRF-TOKEN cookies.
         "201":
           $ref: "../responses/loggedinUser.yaml#/components/responses/loggedinUsers/201"
         "404":
@@ -62,6 +70,7 @@ paths:
     get:
       security:
         - sanctumAuth: []
+      Cookie: X-XSRF-TOKEN=abcdef12345
       tags:
         - User
       summary: Fetches user
