@@ -27,4 +27,3 @@ components:
             - email
             - password
             - password_confirmation    
-        - $ref: "../common.yaml#/components/schemas/TimeStamps"

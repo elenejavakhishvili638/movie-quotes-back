@@ -23,7 +23,8 @@ components:
               format: number
               example: 1
       required:
-        - body
+        - body[en]
+        - body[ka]
         - image
         - year
         - user_id

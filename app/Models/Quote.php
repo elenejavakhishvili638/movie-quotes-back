@@ -34,7 +34,7 @@ class Quote extends Model
                 });
             } else if (Str::startsWith($searchTerm, '#')) {
                 $quoteText = Str::substr($searchTerm, 1);
-                return $query->whereRaw("json_extract(body, '$.en') LIKE ?", ["%{$quoteText}%"])
+                return $query->whereRaw("lower(json_extract(body, '$.en')) LIKE ?", ["%{$quoteText}%"])
                     ->orWhereRaw("json_extract(body, '$.ka') LIKE ?", ["%{$quoteText}%"]);
             }
 

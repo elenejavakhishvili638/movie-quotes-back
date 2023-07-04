@@ -1,0 +1,11 @@
+components:
+  schemas:
+    Notification:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - $ref: "./notification.yaml#/components/schemas/Notification"
+        - type: object
+          properties:
+            updated_at:
+              type: string
+              example: "2022-07-26T20:06:02.000000Z"

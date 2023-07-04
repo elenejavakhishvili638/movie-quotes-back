@@ -105,6 +105,17 @@ Pusher Channels credentials
 
 >PUSHER_APP_CLUSTER=mt1
 
+Others
+>APP_URL=your-url
+
+>SESSION_DOMAIN=
+
+>FRONTEND_URL=frontend-url
+
+>SANCTUM_STATEFUL_DOMAINS=stateful-domains
+
+>BROADCAST_DRIVER=pusher
+
 5.Generate a new application key
 
 ```bash
