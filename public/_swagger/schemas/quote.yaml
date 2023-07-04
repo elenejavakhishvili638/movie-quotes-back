@@ -7,10 +7,10 @@ components:
           properties:                 
             body[en]:
               type: string    
-              example: The Grand Budapest Hotel              
+              example: Gustave H, a concierge, is wrongly framed for murder at the Grand Budapest Hotel. In the process of proving his innocence, he befriends a lobby boy.                          
             body[ka]:
               type: string   
-              example: სასტუმრო გრანდ ბუდაპეშტი  
+              example: ფილმში, რეიფ ფაინზი თავის თანამშრომელთან (ტონი რევოლორი) ერთად ცდილობს დაამტკიცოს თავისი უდანაშაულობა, რადგან ის მკვლელობაშია ეჭვმიტანილი.  
             image:
               type: string
               format: binary

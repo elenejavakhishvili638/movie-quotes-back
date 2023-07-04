@@ -15,7 +15,8 @@ components:
               type: string
               example: Gustave H, a concierge, is wrongly framed for murder at the Grand Budapest Hotel. In the process of proving his innocence, he befriends a lobby boy.                  
             description[ka]:
-              type: string    
+              type: string  
+              example: ფილმში, რეიფ ფაინზი თავის თანამშრომელთან (ტონი რევოლორი) ერთად ცდილობს დაამტკიცოს თავისი უდანაშაულობა, რადგან ის მკვლელობაშია ეჭვმიტანილი.  
             director[en]:
               type: string      
               example: Wes Anderson            
