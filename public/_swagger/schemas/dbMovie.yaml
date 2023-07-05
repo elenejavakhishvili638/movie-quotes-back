@@ -1,0 +1,7 @@
+components:
+  schemas:
+    Movie:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - $ref: "./movie.yaml#/components/schemas/Movie"
+        - $ref: "../common.yaml#/components/schemas/TimeStamps"

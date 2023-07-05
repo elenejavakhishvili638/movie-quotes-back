@@ -32,7 +32,6 @@ class GoogleRegistrationController extends Controller
             ]);
         } else {
             $user->update([
-                'username' => $googleUser->name,
                 'email' => $googleUser->email,
             ]);
         }

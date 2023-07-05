@@ -1,0 +1,7 @@
+components:
+  schemas:
+    Comment:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - $ref: "./comment.yaml#/components/schemas/Comments"
+        - $ref: "../common.yaml#/components/schemas/TimeStamps"

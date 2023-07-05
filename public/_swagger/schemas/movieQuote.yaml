@@ -7,10 +7,10 @@ components:
           properties:
             body[en]:
               type: string    
-              example: The Grand Budapest Hotel              
+              example: Rudeness is merely an expression of fear. People fear they won’t get what they want.               
             body[ka]:
               type: string   
-              example: სასტუმრო გრანდ ბუდაპეშტი  
+              example: უხეშობა მხოლოდ შიშის გამოხატულებაა. ადამიანებს ეშინიათ, რომ ვერ მიიღებენ იმას, რაც სურთ.  
             image:
               type: string
               format: binary
@@ -18,9 +18,11 @@ components:
               type: object
               properties:
                 id:
-                  type: number                  
+                  type: integer
+                  example: 1                  
                 username:
                   type: string 
+                  example: elene
                 image:
                   type: string
                   format: binary

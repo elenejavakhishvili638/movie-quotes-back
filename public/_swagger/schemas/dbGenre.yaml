@@ -1,0 +1,7 @@
+components:
+  schemas:
+    Genre:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - $ref: "./genre.yaml#/components/schemas/Genres"
+        - $ref: "../common.yaml#/components/schemas/TimeStamps"

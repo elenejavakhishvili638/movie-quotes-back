@@ -42,11 +42,10 @@
     </div>
     <div style="margin-top:73px; text-align:left; padding:0 50px;">
         <p style="margin-bottom:24px">Hola!</p>
-        <p>Thanks for joining Movie quotes! We really appreciate it. Please click the button below to verify your
-            account:</p>
+        <p>Please click the button below to reset your password:</p>
         <a href="{{ $url }}" target="_blank"
-            style="background-color:#E31221; display:inline-block; padding:10px 13px; max-width:128px; border-radius:4px; color:#fff; font-weight:700; margin-bottom:40px; text-decoration:none; font-size:16px; outline:none; text-align: center;">Verify
-            Email</a>
+            style="background-color:#E31221; display:inline-block; padding:10px 13px; max-width:128px; border-radius:4px; color:#fff; font-weight:700; margin-bottom:40px; text-decoration:none; font-size:12px; outline:none; text-align: center;">Reset
+            password</a>
         <p>If clicking doesn't work, you can try copying and pasting it to your browser:</p>
         <a href="{{ $url }}">{{ $url }}</a>
         <p style="margin-top:40px;margin-bottom:24px">If you have any problems, please contact us:

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Movie quotes API
-  description: Here goes description
+  description: This is the backend API for the Movie Quotes application.
   version: 0.1.9
 
 servers:
@@ -61,3 +61,25 @@ components:
       type: apiKey
       in: cookie
       name: laravel_session
+  schemas:
+    User:
+      allOf:
+        - $ref: "./_swagger/schemas/user.yaml#/components/schemas/User"
+    Movie:
+      allOf:
+        - $ref: "./_swagger/schemas/dbMovie.yaml#/components/schemas/Movie"
+    Quote:
+      allOf:
+        - $ref: "./_swagger/schemas/dbQuote.yaml#/components/schemas/Quote"
+    Like:
+      allOf:
+        - $ref: "./_swagger/schemas/dbLike.yaml#/components/schemas/Like"
+    Comment:
+      allOf:
+        - $ref: "./_swagger/schemas/dbComment.yaml#/components/schemas/Comment"
+    Notification:
+      allOf:
+        - $ref: "./_swagger/schemas/dbNotification.yaml#/components/schemas/Notification"
+    Genre:
+      allOf:
+        - $ref: "./_swagger/schemas/dbGenre.yaml#/components/schemas/Genre"

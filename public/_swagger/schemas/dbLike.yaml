@@ -1,0 +1,7 @@
+components:
+  schemas:
+    Like:
+      allOf:
+        - $ref: "../common.yaml#/components/schemas/Id"
+        - $ref: "./like.yaml#/components/schemas/Like"
+        - $ref: "../common.yaml#/components/schemas/TimeStamps"
