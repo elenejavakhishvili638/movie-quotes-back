@@ -33,4 +33,13 @@ class StoreQuoteRequest extends FormRequest
             'movie_id' => ['required', Rule::exists('movies', 'id')],
         ];
     }
+    public function messages()
+    {
+        return [
+            'image.image' => [
+                'en' => 'The image field must be an image.',
+                'ka' => 'სურათის ფორმატი არასწორია',
+            ],
+        ];
+    }
 }
