@@ -63,6 +63,10 @@ class StoreMovieRequest extends FormRequest
                 'en' => 'Movie already exists',
                 'ka' => 'ამ სათაურით ფილმი უკვე არსებობს',
             ],
+            'image.image' => [
+                'en' => 'The image field must be an image.',
+                'ka' => 'სურათის ფორმატი არასწორია',
+            ],
         ];
     }
 }
