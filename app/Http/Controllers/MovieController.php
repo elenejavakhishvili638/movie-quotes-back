@@ -30,7 +30,6 @@ class MovieController extends Controller
                         'quotes.likes'
                     ])
                     ->latest()
-                    ->filter($searchTerm)
                     ->get()
             );
         }
