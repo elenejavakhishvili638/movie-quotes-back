@@ -40,7 +40,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(VerificationController::class)->group(function () {
     Route::get('/email/verify/{id}/{hash}', 'verify')->middleware('signed')->name('verification.verify');
-    Route::get('/email-change/verify/{id}/{hash}/{token}', 'verifyNewEmail')->name('email-change.verify');
+    Route::get('/email-change/verify/{id}/{hash}/{token}', 'verifyNewEmail')->middleware('signed')->name('email-change.verify');
     Route::post('/email/resend', 'resend');
 });
 
