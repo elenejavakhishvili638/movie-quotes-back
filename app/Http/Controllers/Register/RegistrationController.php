@@ -15,9 +15,9 @@ class RegistrationController extends Controller
     {
         $attributes = $request->validated();
 
-        $password = $attributes['password'];
+        // $password = $attributes['password'];
 
-        $attributes['password'] = Hash::make($password);
+        // $attributes['password'] = Hash::make($password);
 
         $user = User::create($attributes);
 

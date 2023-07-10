@@ -38,7 +38,7 @@ class UserController extends Controller
         }
 
         if (isset($attributes['password'])) {
-            $attributes['password'] = Hash::make($attributes['password']);
+            $user->password = $attributes['password'];
         }
 
 
