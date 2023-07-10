@@ -57,7 +57,17 @@ npm run dev
 ```bash
 cp .env.example .env
 ```
-Update the .env file with your database credentials:
+5.Generate a new application key
+
+```bash
+php artisan key:generate
+```
+6.Link the storage
+```bash
+php artisan storage:link
+```
+
+7.Update the .env file with your database credentials:
 
 MYSQL:
 
@@ -116,12 +126,6 @@ Others
 
 >BROADCAST_DRIVER=pusher
 
-5.Generate a new application key
-
-```bash
-php artisan key:generate
-```
-
 ## Migrations
 
 if you've completed getting started section, then migrating database if fairly simple process, just execute:
@@ -144,4 +148,4 @@ npm run  dev
 ## Database diagram
 
 ![diagram](https://i.ibb.co/DkR0KV8/draw-SQL-movie-quotes-export-2023-06-28.png)
-See the [Diagram](https://i.ibb.co/DkR0KV8/draw-SQL-movie-quotes-export-2023-06-28.png)
+See the [Diagram](https://drawsql.app/teams/elene/diagrams/movie-quotes)
