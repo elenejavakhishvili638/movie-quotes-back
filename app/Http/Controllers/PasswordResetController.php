@@ -21,7 +21,8 @@ class PasswordResetController extends Controller
         $user = User::where('email', $attributes['email'])->first();
 
         $token = app('auth.password.broker')->createToken($user);
-        $frontEndUrl = env('FRONTEND_URL', 'http://localhost:8081');
+
+        $frontEndUrl = config('app.frontend');
         $url = url($frontEndUrl . '/reset-password/' . $token . '?email=' . $attributes['email'] . '&modal=true');
 
         $user->notify(new ResetPasswordNotification($url));
