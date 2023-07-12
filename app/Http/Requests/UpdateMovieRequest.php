@@ -25,12 +25,12 @@ class UpdateMovieRequest extends FormRequest
         return [
             'title.en' => [
                 'required',
-                'unique:movies,title->en,' . $movie->id,
+                Rule::unique('movies', 'title->en')->ignore($movie->id),
                 'regex:/^[a-zA-Z0-9\s\p{P}]*$/',
             ],
             'title.ka' => [
                 'required',
-                'unique:movies,title->ka,' . $movie->id,
+                Rule::unique('movies', 'title->ka')->ignore($movie->id),
                 'regex:/^[\p{Georgian}0-9\s\p{P}]*$/u',
             ],
             'description.en' => [
@@ -49,11 +49,11 @@ class UpdateMovieRequest extends FormRequest
                 'required',
                 'regex:/^[\p{Georgian}0-9\s\p{P}]*$/u',
             ],
-            'image' =>  'sometimes|required|image',
+            'image' => ['sometimes', 'required', 'image'],
             'year' => ['required'],
             'user_id' => ['required', Rule::exists('users', 'id')],
-            'genres' => 'required',
-            'genres.*' => 'exists:genres,id',
+            'genres' => ['required'],
+            'genres.*' => ['exists:genres,id'],
         ];
     }
 

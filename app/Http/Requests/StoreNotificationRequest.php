@@ -15,8 +15,8 @@ class StoreNotificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required',
-            'quote_id' => 'required'
+            'type' => ['required'],
+            'quote_id' => ['required']
         ];
     }
 }

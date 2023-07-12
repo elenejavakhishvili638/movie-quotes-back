@@ -15,8 +15,8 @@ class NotificationController extends Controller
 
     public function index(): JsonResponse
     {
-        $notifications = Notification::with('actionUser')->where('user_id', Auth::id())->latest()->get();
-        return new JsonResponse(NotificationResource::collection($notifications));
+        $notifications = Notification::with('actionUser')->where('user_id', auth()->id())->latest()->get();
+        return  response()->json(NotificationResource::collection($notifications));
     }
 
     public function store(StoreNotificationRequest $request, $id): JsonResponse
@@ -26,7 +26,7 @@ class NotificationController extends Controller
 
         $attributes['user_id'] = $id;
 
-        $attributes['action_user_id'] = Auth::id();
+        $attributes['action_user_id'] = auth()->id();
         $notification = null;
 
         if ($attributes['user_id'] != $attributes['action_user_id']) {
@@ -53,7 +53,7 @@ class NotificationController extends Controller
 
     public function markAllAsRead(): JsonResponse
     {
-        Notification::where('user_id', Auth::id())->whereNull('read_at')->update(['read_at' => now()]);
+        Notification::where('user_id', auth()->id())->whereNull('read_at')->update(['read_at' => now()]);
         return response()->json('All notifications marked as read.');
     }
 }
