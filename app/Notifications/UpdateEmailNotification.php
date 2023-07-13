@@ -16,14 +16,11 @@ use Illuminate\Support\Str;
 class UpdateEmailNotification extends Notification
 {
     use Queueable;
-
-    public $newEmail;
     /**
      * Create a new notification instance.
      */
-    public function __construct($newEmail)
+    public function __construct(public $newEmail)
     {
-        $this->newEmail = $newEmail;
     }
 
     /**
@@ -60,7 +57,7 @@ class UpdateEmailNotification extends Notification
 
         $path = str_replace('/api', '', $signedUrlParts['path']);
 
-        $frontEndUrl = env('FRONTEND_URL', 'http://localhost:8081');
+        $frontEndUrl = config('app.frontend');
 
         $frontendUrl = $frontEndUrl . $path . '?' . $signedUrlParts['query'];
 

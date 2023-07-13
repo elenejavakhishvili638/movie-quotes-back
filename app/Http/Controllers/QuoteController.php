@@ -15,20 +15,19 @@ class QuoteController extends Controller
     public function index(Request $request): JsonResponse
     {
         $searchTerm = $request->query('search');
-        $page = $request->query('page', 1);
         $quotesPerPage = 5;
 
         $quotes = Quote::with('movie', 'user', 'comments.user', 'likes')
             ->filter($searchTerm)
             ->latest()
-            ->paginate($quotesPerPage, ['*'], 'page', $page);
+            ->paginate($quotesPerPage);
 
         return new JsonResponse(QuoteResource::collection($quotes));
     }
 
-    public function show($id): JsonResponse
+    public function show(Quote $quote): JsonResponse
     {
-        $quote = Quote::with(['user', 'comments.user', 'likes'])->find($id);
+        $quote->load(['user', 'comments.user', 'likes']);
         return response()->json(new QuoteResource($quote));
     }
 
@@ -57,9 +56,9 @@ class QuoteController extends Controller
         return response()->json($quote, 201);
     }
 
-    public function destroy($id): JsonResponse
+    public function destroy(Quote $quote): JsonResponse
     {
-        $quote = Quote::find($id);
+        // $quote = Quote::find($id);
 
         if ($quote) {
             $quote->delete();

@@ -12,10 +12,8 @@ use Illuminate\Http\JsonResponse;
 
 class LikeController extends Controller
 {
-    public function store(StoreLikeRequest $request, $id): JsonResponse
+    public function store(StoreLikeRequest $request, Quote $quote): JsonResponse
     {
-        $quote = Quote::find($id);
-
         if (!$quote) {
             return response()->json(['error' => 'Quote not found'], 404);
         }
@@ -33,10 +31,8 @@ class LikeController extends Controller
     }
 
 
-    public function destroy($id): JsonResponse
+    public function destroy(Quote $quote): JsonResponse
     {
-        $quote = Quote::find($id);
-
         if (!$quote) {
             return response()->json(['message' => 'Quote not found.'], 404);
         }

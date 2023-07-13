@@ -14,14 +14,11 @@ class LikeSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $like;
-
     /**
      * Create a new event instance.
      */
-    public function __construct($like)
+    public function __construct(public $like)
     {
-        $this->like = $like;
     }
 
     /**

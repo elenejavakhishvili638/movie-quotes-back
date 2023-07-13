@@ -15,14 +15,11 @@ class NotificationReceived implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $notifications;
-
     /**
      * Create a new event instance.
      */
-    public function __construct($notifications)
+    public function __construct(public $notifications)
     {
-        $this->notifications = $notifications;
     }
 
     /**

@@ -28,7 +28,7 @@ class UpdateQuoteRequest extends FormRequest
                 'required',
                 'regex:/^[\p{Georgian}0-9\s\p{P}]*$/u',
             ],
-            'image' =>  'sometimes|required|image',
+            'image' => ['sometimes', 'required', 'image'],
             'user_id' => ['required', Rule::exists('users', 'id')],
             'movie_id' => ['required', Rule::exists('movies', 'id')],
         ];

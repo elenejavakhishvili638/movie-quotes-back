@@ -38,7 +38,8 @@ class GoogleRegistrationController extends Controller
 
         Auth::login($user, true);
         session()->regenerate();
-        $frontEndUrl = env('FRONTEND_URL', 'http://localhost:8081');
+
+        $frontEndUrl = config('app.frontend');
         return redirect($frontEndUrl);
     }
 }

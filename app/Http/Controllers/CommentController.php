@@ -13,10 +13,8 @@ use Illuminate\Http\JsonResponse;
 
 class CommentController extends Controller
 {
-    public function store(StoreCommentRequest $request, $id): JsonResponse
+    public function store(StoreCommentRequest $request, Quote $quote): JsonResponse
     {
-        $quote = Quote::find($id);
-
         if (!$quote) {
             return response()->json(['error' => 'Quote not found'], 404);
         }

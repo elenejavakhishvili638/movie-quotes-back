@@ -14,14 +14,11 @@ class UnlikeSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $unlike;
-
     /**
      * Create a new event instance.
      */
-    public function __construct($unlike)
+    public function __construct(public $unlike)
     {
-        $this->unlike = $unlike;
     }
 
     /**

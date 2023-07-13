@@ -13,7 +13,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $genres = ['Action', 'Animation', 'Adventure', 'Biography', 'Comedy', 'Crime', 'Drama', 'Documentary', 'Fantasy', 'Historical', 'Horror', 'Melodrama', 'Musical', 'Reality', 'Science', 'Thriller', 'Western'];
+        $genres = [
+            ['en' => 'Action', 'ka' => 'მძაფრსიუჟეტიანი'],
+            ['en' => 'Animation', 'ka' => 'ანიმაცია'],
+            ['en' => 'Adventure', 'ka' => 'სათავგადასავლო'],
+            ['en' => 'Biography', 'ka' => 'ბიოგრაფიული'],
+            ['en' => 'Comedy', 'ka' => 'კომედია'],
+            ['en' => 'Crime', 'ka' => 'კრიმინალური'],
+            ['en' => 'Drama', 'ka' => 'დრამა'],
+            ['en' => 'Documentary', 'ka' => 'დოკუმენტური'],
+            ['en' => 'Fantasy', 'ka' => 'ფენტეზი'],
+            ['en' => 'Historical', 'ka' => 'ისტორიული'],
+            ['en' => 'Horror', 'ka' => 'საშინელებათა'],
+            ['en' => 'Melodrama', 'ka' => 'მელოდრამა'],
+            ['en' => 'Musical', 'ka' => 'მიუზიკლი'],
+            ['en' => 'Science', 'ka' => 'სამეცნიერო'],
+            ['en' => 'Thriller', 'ka' => 'თრილერი'],
+            ['en' => 'Western', 'ka' => 'ვესტერნი'],
+        ];
 
         foreach ($genres as $genre) {
             Genre::create(['name' => $genre]);

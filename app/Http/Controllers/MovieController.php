@@ -12,28 +12,24 @@ use Illuminate\Support\Facades\Log;
 
 class MovieController extends Controller
 {
-    public function index(Request $request): JsonResponse
+    public function index(): JsonResponse
     {
         $movies = [];
-        Log::info('sss'.auth()->user());
-        if (auth()->check()) {
-            $searchTerm = $request->query('search');
-            $movies = MovieResource::collection(
-                auth()->user()->movies()
-                    ->with([
-                        'quotes' => function ($query) {
-                            $query->latest();
-                        },
-                        'genres',
-                        'quotes.comments.user',
-                        'quotes.user',
-                        'quotes.likes'
-                    ])
-                    ->latest()
-                    ->get()
-            );
-        }
-
+        $movies = MovieResource::collection(
+            auth()->user()->movies()
+                ->with([
+                    'quotes' => function ($query) {
+                        $query->latest();
+                    },
+                    'genres',
+                    'quotes.comments.user',
+                    'quotes.user',
+                    'quotes.likes'
+                ])
+                ->latest()
+                ->get()
+        );
+     
         return response()->json($movies);
     }
 
@@ -50,9 +46,9 @@ class MovieController extends Controller
     }
 
 
-    public function show($id): JsonResponse
+    public function show(Movie $movie): JsonResponse
     {
-        $movie = Movie::with(['quotes.comments.user', 'genres', 'quotes.user', 'quotes.likes'])->find($id);
+        $movie->load(['quotes.comments.user', 'genres', 'quotes.user', 'quotes.likes']);
         return response()->json(new MovieResource($movie));
     }
 

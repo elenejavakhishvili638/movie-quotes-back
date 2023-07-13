@@ -51,7 +51,7 @@ class VerificationController extends Controller
 
     public function resend(): JsonResponse
     {
-        $user = Auth::user(); 
+        $user = auth()->user(); 
 
         $user->notify(new VerifyEmailNotification());
 

@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserController extends Controller
@@ -30,6 +31,9 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($request->hasFile('image')) {
+            if ($user->image) {
+                Storage::delete($user->image);
+            }
             $attributes['image'] = request()->file('image')->store('images');
         }
 
@@ -38,7 +42,7 @@ class UserController extends Controller
         }
 
         if (isset($attributes['password'])) {
-            $attributes['password'] = Hash::make($attributes['password']);
+            $user->password = $attributes['password'];
         }
 
 

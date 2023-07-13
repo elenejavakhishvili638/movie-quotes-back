@@ -47,7 +47,7 @@
             style="background-color:#E31221; display:inline-block; padding:10px 13px; max-width:128px; border-radius:4px; color:#fff; font-weight:700; margin-bottom:40px; text-decoration:none; font-size:16px; outline:none; text-align: center;">Verify
             Email</a>
         <p>If clicking doesn't work, you can try copying and pasting it to your browser:</p>
-        <a href="{{ $url }}">{{ $url }}</a>
+        <a style="color:#DDCCAA;" href="{{ $url }}">{{ $url }}</a>
         <p style="margin-top:40px;margin-bottom:24px">If you have any problems, please contact us:
             support@moviequotes.ge</p>
         <p>MovieQuotes Crew</p>
