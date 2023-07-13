@@ -26,11 +26,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('/user', 'index')->middleware('auth:sanctum')->name('user.show');
-    Route::patch('/user/{id}', 'update')->name('user.update');
-});
-
 Route::post('/register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
 
 Route::controller(AuthController::class)->group(function () {
@@ -59,6 +54,12 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/user', 'index')->name('user.show');
+        Route::patch('/user/{id}', 'update')->name('user.update');
+    });
+    
     Route::controller(MovieController::class)->group(function () {
         Route::get('/movies', 'index')->name('movie.index');
         Route::get('/movie/{movie}', 'show')->name('movie.show');
