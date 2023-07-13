@@ -66,11 +66,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/movie/{id}', 'destroy')->name('movie.destroy');
         Route::patch('/movie/{id}', 'update')->name('movie.update');
     });
-});
 
-Route::get('/genres', [GenreController::class, 'index'])->middleware('auth:sanctum')->name('genres.show');
+    Route::get('/genres', [GenreController::class, 'index'])->name('genres.show');
 
-Route::middleware('auth:sanctum')->group(function () {
     Route::controller(QuoteController::class)->group(function () {
         Route::get('/quotes', 'index')->name('quote.index');
         Route::post('/quote', 'store')->name('quote.store');
@@ -78,18 +76,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/quote/{quote}', 'destroy')->name('quote.destroy');
         Route::patch('/quote/{id}', 'update')->name('quote.update');
     });
-});
 
-Route::post('/quotes/{quote}/comments', [CommentController::class, 'store'])->middleware('auth:sanctum')->name('comment.store');
+    Route::post('/quotes/{quote}/comments', [CommentController::class, 'store'])->name('comment.store');
 
-Route::middleware('auth:sanctum')->group(function () {
     Route::controller(LikeController::class)->group(function () {
         Route::post('/quotes/{quote}/likes', 'store')->name('like.store');
         Route::delete('/quotes/{quote}/likes', 'destroy')->name('like.destroy');
     });
-});
 
-Route::middleware('auth:sanctum')->group(function () {
     Route::controller(NotificationController::class)->group(function () {
         Route::get('/notifications','index')->name('notification.index');
         Route::post('/notification/{id}','store')->name('notification.store');
